@@ -1,5 +1,7 @@
 package com.app.jonatan.enteratechihuahua.activities;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -12,8 +14,10 @@ import com.app.jonatan.enteratechihuahua.fragments.FragmentEvents;
 import com.app.jonatan.enteratechihuahua.network.VolleySingleton;
 import com.app.jonatan.enteratechihuahua.test.R;
 import com.daimajia.androidanimations.library.sliders.SlideOutDownAnimator;
+import com.github.paolorotolo.appintro.AppIntro;
 import com.oguzdev.circularfloatingactionmenu.library.FloatingActionButton;
 
+import android.preference.PreferenceManager;
 import android.provider.ContactsContract;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -40,7 +44,7 @@ import it.neokree.materialtabs.MaterialTabListener;
 import me.tatarka.support.job.JobScheduler;
 
 public class ActivityMain extends ActionBarActivity implements MaterialTabListener, View.OnClickListener {
-
+    public boolean isFirstStart;
     //int representing our 0th tab corresponding to the Fragment where search results are dispalyed
     public static final int TAB_SEARCH_RESULTS = 0;
     //int corresponding to our 1st tab corresponding to the Fragment where box office hits are dispalyed
@@ -83,9 +87,43 @@ public class ActivityMain extends ActionBarActivity implements MaterialTabListen
         mLogo = (ImageView) findViewById(R.id.custom_title);
         mLogo.setImageResource(R.drawable.enterate);
 
+        //  Declare a new thread to do a preference check
+        Thread t = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                //  Initialize SharedPreferences
+                SharedPreferences getPrefs = PreferenceManager
+                        .getDefaultSharedPreferences(getBaseContext());
+
+                //  Create a new boolean and preference and set it to true
+                isFirstStart = getPrefs.getBoolean("firstStart", true);
+
+                //  If the activity has never started before...
+                if (isFirstStart) {
+
+                    //  Launch app intro
+                    Intent i = new Intent(ActivityMain.this, Intro.class);
+                    startActivity(i);
+
+                    //  Make a new preferences editor
+                    SharedPreferences.Editor e = getPrefs.edit();
+
+                    //  Edit preference to make it false because we don't want this to run again
+                    e.putBoolean("firstStart", false);
+
+                    //  Apply changes
+                    e.apply();
+                }
+            }
+        });
+
+        // Start the thread
+        t.start();
+
         //AnimationUtils.animateToolbarDroppingDown(mContainerToolbar);
 
     }
+
 
     private void setupDrawer() {
         mToolbar = (Toolbar) findViewById(R.id.app_bar);
