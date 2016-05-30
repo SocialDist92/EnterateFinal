@@ -129,7 +129,7 @@ public class ActivityMain extends ActionBarActivity implements MaterialTabListen
     }
 
     private void setupFAB() {
-        //define the icon for the main floating action button
+        /*//define the icon for the main floating action button
         ImageView iconFAB = new ImageView(this);
         iconFAB.setImageResource(R.drawable.ic_action_new);
 
@@ -172,7 +172,7 @@ public class ActivityMain extends ActionBarActivity implements MaterialTabListen
                 .addSubActionView(buttonSortDate)
                 .addSubActionView(buttonSortRatings)
                 .attachTo(mFAB)
-                .build();
+                .build();*/
     }
 
     @Override

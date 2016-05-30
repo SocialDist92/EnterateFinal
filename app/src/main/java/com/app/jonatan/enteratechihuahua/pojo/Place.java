@@ -16,15 +16,14 @@ public class Place implements Parcelable {
     private String urlImageLogo;
     private String urlLocation;
     private String urlTwitter;
-    //private ArrayList<Promotion> promotions;
+    private ArrayList<Ubication> ubications;
 
 
     public Place() {
     }
 
     public Place(String category, String idAsStr, String name, String urlFacebook,
-                 String urlImageLogo, String urlLocation, String urlTwitter,
-                 ArrayList<Promotion> promotions) {
+                 String urlImageLogo, String urlLocation, String urlTwitter) {
         this.category = category;
         this.idAsStr = idAsStr;
         this.name = name;
@@ -32,7 +31,7 @@ public class Place implements Parcelable {
         this.urlImageLogo = urlImageLogo;
         this.urlLocation = urlLocation;
         this.urlTwitter = urlTwitter;
-        //this.promotions = promotions;
+        this.ubications = new ArrayList<>();
     }
 
     protected Place(Parcel in) {
@@ -43,7 +42,7 @@ public class Place implements Parcelable {
         urlImageLogo = in.readString();
         urlLocation = in.readString();
         urlTwitter = in.readString();
-        //promotions = in.createTypedArrayList(Promotion.CREATOR);
+        ubications = in.createTypedArrayList(Ubication.CREATOR);
     }
 
     public static final Creator<Place> CREATOR = new Creator<Place>() {
@@ -57,6 +56,23 @@ public class Place implements Parcelable {
             return new Place[size];
         }
     };
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(category);
+        dest.writeString(idAsStr);
+        dest.writeString(name);
+        dest.writeString(urlFacebook);
+        dest.writeString(urlImageLogo);
+        dest.writeString(urlLocation);
+        dest.writeString(urlTwitter);
+        dest.writeTypedList(ubications);
+    }
 
     public String getCategory() {
         return category;
@@ -114,28 +130,15 @@ public class Place implements Parcelable {
         this.urlTwitter = urlTwitter;
     }
 
-    /*public ArrayList<Promotion> getPromotions() {
-        return promotions;
+    public ArrayList<Ubication> getUbications() {
+        return ubications;
     }
 
-    public void setPromotions(ArrayList<Promotion> promotions) {
-        this.promotions = promotions;
-    }*/
-
-    @Override
-    public int describeContents() {
-        return 0;
+    public void setUbications(ArrayList<Ubication> ubications) {
+        this.ubications = ubications;
     }
 
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(category);
-        dest.writeString(idAsStr);
-        dest.writeString(name);
-        dest.writeString(urlFacebook);
-        dest.writeString(urlImageLogo);
-        dest.writeString(urlLocation);
-        dest.writeString(urlTwitter);
-        //dest.writeTypedList(promotions);
+    public static Creator<Place> getCREATOR() {
+        return CREATOR;
     }
 }

@@ -175,7 +175,9 @@ public class FragmentGovernment extends Fragment implements PromotionsLoadedList
         final List<Promotion> filteredModelList = new ArrayList<>();
         for(Promotion model: models) {
             final String text = model.getName().toLowerCase();
-            if (text.contains(query)) {
+            final String namePlace = model.getPlace().getName().toLowerCase();
+
+            if (text.contains(query) || namePlace.contains(query)) {
                 filteredModelList.add(model);
             }
         }
