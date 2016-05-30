@@ -1,6 +1,7 @@
 package com.app.jonatan.enteratechihuahua.fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Handler;
@@ -17,17 +18,21 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageLoader;
 import com.app.jonatan.enteratechihuahua.activities.ActivityMain;
+import com.app.jonatan.enteratechihuahua.activities.LoginActivity;
 import com.app.jonatan.enteratechihuahua.adapters.AdapterNavigationDrawer;
 import com.app.jonatan.enteratechihuahua.extras.Constants;
 import com.app.jonatan.enteratechihuahua.network.VolleySingleton;
 import com.app.jonatan.enteratechihuahua.pojo.Information;
 import com.app.jonatan.enteratechihuahua.test.R;
+import com.facebook.Session;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,7 +57,7 @@ public class FragmentNavigationDrawer extends Fragment {
     private TextView name;
     private VolleySingleton mVolleySingleton;
     private ImageLoader mImageLoader;
-
+    private Button logout;
 
     public FragmentNavigationDrawer() {
     }
@@ -86,6 +91,7 @@ public class FragmentNavigationDrawer extends Fragment {
         cover = (ImageView) view.findViewById(R.id.cover);
         name = (TextView) view.findViewById(R.id.name);
         shit = (ImageView) view.findViewById(R.id.profile_image);
+        logout = (Button) view.findViewById(R.id.logoutBtn);
 
         final Handler handler = new Handler();
         Runnable runnable = new Runnable() {
@@ -130,7 +136,8 @@ public class FragmentNavigationDrawer extends Fragment {
 
     }
 
-    public void setUp(int fragmentId, DrawerLayout drawerLayout, final Toolbar toolbar, String url, String name) {
+    public void setUp(int fragmentId, DrawerLayout drawerLayout, final Toolbar toolbar,
+                      String url, String name) {
         mContainer = getActivity().findViewById(fragmentId);
         mDrawerLayout = drawerLayout;
         mVolleySingleton = VolleySingleton.getInstance();
@@ -173,10 +180,25 @@ public class FragmentNavigationDrawer extends Fragment {
             }
         });
 
-        if(url != null && name != null){
+        if(url != "" && name != ""){
             this.name.setText(name);
             loadImages(url);
+
         }
+        /*
+        if(flag == "ok"){
+            logout.setVisibility(View.INVISIBLE);
+        }*/
+
+
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                callFacebookLogout(getContext());
+                Intent intent = new Intent(getActivity(), LoginActivity.class);
+                startActivity(intent);
+            }
+        });
 
 
     }
@@ -246,6 +268,7 @@ public class FragmentNavigationDrawer extends Fragment {
                 @Override
                 public void onResponse(ImageLoader.ImageContainer response, boolean isImmediate) {
                     shit.setImageBitmap(response.getBitmap());
+
                 }
 
                 @Override
@@ -254,6 +277,26 @@ public class FragmentNavigationDrawer extends Fragment {
                 }
             });
         }
+    }
+
+    public static void callFacebookLogout(Context context) {
+        Session session = Session.getActiveSession();
+        if (session != null) {
+
+            if (!session.isClosed()) {
+                session.closeAndClearTokenInformation();
+                //clear your preferences if saved
+            }
+        } else {
+
+            session = new Session(context);
+            Session.setActiveSession(session);
+
+            session.closeAndClearTokenInformation();
+            //clear your preferences if saved
+
+        }
+
     }
 
 

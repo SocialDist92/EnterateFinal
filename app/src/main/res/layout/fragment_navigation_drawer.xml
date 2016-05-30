@@ -42,7 +42,7 @@
                 android:layout_marginLeft="12dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Enterate "
+                android:text="entérate "
                 android:textSize="20dp"
                 android:textColor="@android:color/white"
                 />
@@ -85,12 +85,16 @@
             android:layout_height="wrap_content"
             />
 
-        <com.facebook.widget.LoginButton
-            android:id="@+id/authButton"
-            android:layout_width="200dp"
+        <Button
+            android:id="@+id/logoutBtn"
+            android:layout_width="80dp"
+            android:text="LogOut"
+            android:textColor="#ffff"
+            android:visibility="visible"
             android:layout_height="wrap_content"
-            android:layout_marginTop="300dp"
-            />
+            android:layout_marginLeft="18dp"
+            android:layout_marginTop="200dp"
+            android:background="@color/colorPrimary" />
     </RelativeLayout>
 
 </RelativeLayout>
