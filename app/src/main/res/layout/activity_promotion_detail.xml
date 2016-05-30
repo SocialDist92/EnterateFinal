@@ -1,9 +1,14 @@
+<RelativeLayout
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
 xmlns:app="http://schemas.android.com/apk/res-auto"
 xmlns:tools="http://schemas.android.com/tools"
 android:layout_width="match_parent"
-android:layout_height="match_parent"
+android:layout_height="wrap_content"
+    android:id="@+id/coordinator"
 android:fitsSystemWindows="true"
 tools:context="com.app.jonatan.enteratechihuahua.activities.PromotionDetail"
 tools:ignore="MergeRootFrame">
@@ -67,4 +72,36 @@ tools:ignore="MergeRootFrame">
 
 
 </android.support.design.widget.CoordinatorLayout>
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="200dp"
+        android:layout_below="@+id/coordinator">
+        <ImageView
+            android:id="@+id/facebook"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/facebook"/>
+        <ImageView
+            android:id="@+id/twitter"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/twitter"
+            android:layout_toRightOf="@+id/facebook"
+            />
+        <ImageView
+            android:id="@+id/instagram"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/instagram"
+            android:layout_toRightOf="@+id/twitter"
+            />
+        <ImageView
+            android:id="@+id/pinterest"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/pinterest"
+            android:layout_toRightOf="@+id/instagram"
+            />
 
+    </RelativeLayout>
+</RelativeLayout>
