@@ -11,6 +11,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
+import com.app.jonatan.enteratechihuahua.pojo.Promotion;
+import com.app.jonatan.enteratechihuahua.pojo.Ubication;
 import com.app.jonatan.enteratechihuahua.test.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -22,11 +24,13 @@ import com.google.android.gms.maps.model.MarkerOptions;
 public class PromotionDetail extends AppCompatActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
+    private Promotion mPromotion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_promotion_detail);
+        mPromotion = getIntent().getParcelableExtra("promotion");
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.detail_toolbar);
         setSupportActionBar(toolbar);
@@ -47,7 +51,7 @@ public class PromotionDetail extends AppCompatActivity implements OnMapReadyCall
 
         CollapsingToolbarLayout appBarLayout = (CollapsingToolbarLayout) findViewById(R.id.toolbar_layout);
         if (appBarLayout != null) {
-            appBarLayout.setTitle("Promocion");
+            appBarLayout.setTitle(mPromotion.getDescription());
         }
 
 
@@ -69,8 +73,21 @@ public class PromotionDetail extends AppCompatActivity implements OnMapReadyCall
 
         // Add a marker in Sydney and move the camera
         LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+
+        if (mPromotion.getPlace().getUbications().size() != 0) {
+
+            for(Ubication u: mPromotion.getPlace().getUbications()) {
+                if (!u.getLatitud().equals("NA")) {
+                    mMap.addMarker(new MarkerOptions().position(new LatLng(Double.parseDouble(u.getLatitud()),
+                            Double.parseDouble(u.getLongitude()))).title(mPromotion.getPlace().getName()));
+                }
+            }
+                final Ubication ubication = mPromotion.getPlace().getUbications().get(0);
+                final LatLng first = new LatLng(Double.parseDouble(ubication.getLatitud()), Double.parseDouble(ubication.getLongitude()));
+                mMap.addMarker(new MarkerOptions().position(first).title("Marker in Starbucks"));
+                mMap.moveCamera(CameraUpdateFactory.newLatLng(first));
+        }
+
     }
 
     @Override

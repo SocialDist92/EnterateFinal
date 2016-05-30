@@ -54,8 +54,8 @@ public class AdapterPromotion extends RecyclerView.Adapter<AdapterPromotion.View
 
     @Override
     public void onBindViewHolder(ViewHolderPromotion holder, int position) {
-        Promotion currentPromotion = mListPromotions.get(position);
-        holder.promotionName.setText(currentPromotion.getName());
+        final Promotion currentPromotion = mListPromotions.get(position);
+        holder.promotionName.setText(currentPromotion.getPlace().getName());
         holder.promotionDescription.setText(currentPromotion.getDescription());
         holder.promotionAudienceScore.setRating(4.0F);
         holder.promotionAudienceScore.setAlpha(0.5F);
@@ -71,6 +71,7 @@ public class AdapterPromotion extends RecyclerView.Adapter<AdapterPromotion.View
             public void onClick(View v) {
                 Context context = v.getContext();
                 Intent intent = new Intent(context, PromotionDetail.class);
+                intent.putExtra("promotion", currentPromotion);
                 context.startActivity(intent);
             }
         });

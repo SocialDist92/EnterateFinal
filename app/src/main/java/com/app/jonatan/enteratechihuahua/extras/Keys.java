@@ -16,5 +16,8 @@ public interface Keys {
         public static final String KEY_PLACE = "place";
         public static final String KEY_ITEMS = "items";
         public static final String KEY_DESPCRIPTION = "description";
+        public static final String KEY_UBICATIONS = "ubications";
+        public static final String KEY_LATITUDE = "latitude";
+        public static final String KEY_LONGITUDE = "longitude";
     }
 }

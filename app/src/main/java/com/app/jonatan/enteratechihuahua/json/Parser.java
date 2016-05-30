@@ -3,6 +3,7 @@ package com.app.jonatan.enteratechihuahua.json;
 import com.app.jonatan.enteratechihuahua.extras.Constants;
 import com.app.jonatan.enteratechihuahua.pojo.Place;
 import com.app.jonatan.enteratechihuahua.pojo.Promotion;
+import com.app.jonatan.enteratechihuahua.pojo.Ubication;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -14,8 +15,11 @@ import static com.app.jonatan.enteratechihuahua.extras.Keys.EndpointPlacePromoti
 import static com.app.jonatan.enteratechihuahua.extras.Keys.EndpointPlacePromotion.KEY_DESPCRIPTION;
 import static com.app.jonatan.enteratechihuahua.extras.Keys.EndpointPlacePromotion.KEY_ID;
 import static com.app.jonatan.enteratechihuahua.extras.Keys.EndpointPlacePromotion.KEY_ITEMS;
+import static com.app.jonatan.enteratechihuahua.extras.Keys.EndpointPlacePromotion.KEY_LATITUDE;
+import static com.app.jonatan.enteratechihuahua.extras.Keys.EndpointPlacePromotion.KEY_LONGITUDE;
 import static com.app.jonatan.enteratechihuahua.extras.Keys.EndpointPlacePromotion.KEY_NAME;
 import static com.app.jonatan.enteratechihuahua.extras.Keys.EndpointPlacePromotion.KEY_PLACE;
+import static com.app.jonatan.enteratechihuahua.extras.Keys.EndpointPlacePromotion.KEY_UBICATIONS;
 import static com.app.jonatan.enteratechihuahua.extras.Keys.EndpointPlacePromotion.KEY_URL_IMAGE_LOGO;
 
 /**
@@ -36,6 +40,7 @@ public class Parser {
                     String placeCategory = Constants.NA;
                     String placeUrlImageLogo = Constants.NA;
                     String placeId = Constants.NA;
+                    ArrayList<Ubication> ubications = new ArrayList<>();
 
                     JSONObject currentPromotion = arrayPromotions.getJSONObject(i);
 
@@ -70,6 +75,31 @@ public class Parser {
                         if (Utils.contains(objectPlace, KEY_ID)) {
                             placeId = objectPlace.getString(KEY_ID);
                         }
+
+                        if (Utils.contains(objectPlace, KEY_UBICATIONS)) {
+                            JSONArray arrayUbications = objectPlace.getJSONArray(KEY_UBICATIONS);
+
+                            for (int j = 0; j < arrayUbications.length(); j++) {
+                                String latitude = Constants.NA;
+                                String longitude = Constants.NA;
+
+                                JSONObject currentUbication = arrayUbications.getJSONObject(j);
+
+                                if (Utils.contains(currentUbication, KEY_LATITUDE)){
+                                    latitude = currentUbication.getString(KEY_LATITUDE);
+                                }
+
+                                if (Utils.contains(currentUbication, KEY_LONGITUDE)){
+                                    longitude = currentUbication.getString(KEY_LONGITUDE);
+                                }
+
+                                Ubication ubication = new Ubication();
+                                ubication.setLatitud(latitude);
+                                ubication.setLongitude(longitude);
+                                ubications.add(ubication);
+                            }
+
+                        }
                     }
 
                     Place place = new Place();
@@ -79,7 +109,8 @@ public class Parser {
                     place.setUrlImageLogo(placeUrlImageLogo);
                     place.setName(placeName);
                     place.setIdAsStr(placeId);
-                    System.out.println("Place" + place.getName());
+                    place.setUbications(ubications);
+                    System.out.println("ubications ---->" + ubications);
 
                     promotion.setName(name);
                     promotion.setDescription(description);
