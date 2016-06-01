@@ -3,11 +3,8 @@ package com.app.jonatan.enteratechihuahua.activities;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.design.widget.CollapsingToolbarLayout;
-import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
-import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
@@ -35,8 +32,8 @@ public class PromotionDetail extends AppCompatActivity implements OnMapReadyCall
         setContentView(R.layout.activity_promotion_detail);
         mPromotion = getIntent().getParcelableExtra("promotion");
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.detail_toolbar);
-        setSupportActionBar(toolbar);
+        //Toolbar toolbar = (Toolbar) findViewById(R.id.detail_toolbar);
+        //setSupportActionBar(toolbar);
 
         ImageView imgFacebook = (ImageView) findViewById(R.id.facebook);
 
@@ -63,10 +60,10 @@ public class PromotionDetail extends AppCompatActivity implements OnMapReadyCall
             actionBar.setDisplayShowHomeEnabled(true);
         }
 
-        CollapsingToolbarLayout appBarLayout = (CollapsingToolbarLayout) findViewById(R.id.toolbar_layout);
+        /*CollapsingToolbarLayout appBarLayout = (CollapsingToolbarLayout) findViewById(R.id.toolbar_layout);
         if (appBarLayout != null) {
             appBarLayout.setTitle(mPromotion.getDescription());
-        }
+        }*/
 
 
     }
@@ -121,4 +118,5 @@ public class PromotionDetail extends AppCompatActivity implements OnMapReadyCall
         }
         return super.onOptionsItemSelected(item);
     }
+
 }
