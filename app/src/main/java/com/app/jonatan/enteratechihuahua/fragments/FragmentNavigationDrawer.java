@@ -273,7 +273,7 @@ public class FragmentNavigationDrawer extends Fragment {
 
                 @Override
                 public void onErrorResponse(VolleyError error) {
-
+                    logout.setVisibility(View.INVISIBLE);
                 }
             });
         }
