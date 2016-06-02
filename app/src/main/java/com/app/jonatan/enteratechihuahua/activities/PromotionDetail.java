@@ -10,7 +10,12 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.ImageLoader;
+import com.app.jonatan.enteratechihuahua.extras.Constants;
+import com.app.jonatan.enteratechihuahua.network.VolleySingleton;
 import com.app.jonatan.enteratechihuahua.pojo.Promotion;
 import com.app.jonatan.enteratechihuahua.pojo.Ubication;
 import com.app.jonatan.enteratechihuahua.test.R;
@@ -25,6 +30,9 @@ public class PromotionDetail extends AppCompatActivity implements OnMapReadyCall
 
     private GoogleMap mMap;
     private Promotion mPromotion;
+    private VolleySingleton mVolleySingleton;
+    private ImageLoader mImageLoader;
+    private ImageView placeLogo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,16 +44,59 @@ public class PromotionDetail extends AppCompatActivity implements OnMapReadyCall
         //setSupportActionBar(toolbar);
 
         ImageView imgFacebook = (ImageView) findViewById(R.id.facebook);
+        ImageView imgTwitter = (ImageView) findViewById(R.id.twitter);
+        ImageView imgInstagram = (ImageView) findViewById(R.id.instagram);
+        ImageView imgPinterest = (ImageView) findViewById(R.id.pinterest);
+        TextView place = (TextView) findViewById(R.id.place);
+        TextView description = (TextView) findViewById(R.id.description);
+        placeLogo = (ImageView) findViewById(R.id.placeImg);
+
+        mVolleySingleton = VolleySingleton.getInstance();
+        mImageLoader = mVolleySingleton.getImageLoader();
+
+        place.setText(mPromotion.getPlace().getName());
+        description.setText(mPromotion.getDescription());
+
+        loadImages(mPromotion.getPlace().getUrlImageLogo());
+
+
 
         imgFacebook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Uri uri = Uri.parse("http://www.facebook.com"); // missing 'http://' will cause crashed
                 Intent intent = new Intent(Intent.ACTION_VIEW, uri);
                 startActivity(intent);
             }
         });
 
+        imgTwitter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Uri uri = Uri.parse("http://www.twitter.com"); // missing 'http://' will cause crashed
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(intent);
+            }
+        });
+
+        imgInstagram.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Uri uri = Uri.parse("http://www.instagram.com"); // missing 'http://' will cause crashed
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(intent);
+            }
+        });
+
+        imgPinterest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Uri uri = Uri.parse("http://www.pinterest.com"); // missing 'http://' will cause crashed
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(intent);
+            }
+        });
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
@@ -117,6 +168,22 @@ public class PromotionDetail extends AppCompatActivity implements OnMapReadyCall
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void loadImages(String urlThumbnail) {
+        if (!urlThumbnail.equals(Constants.NA)) {
+            mImageLoader.get(urlThumbnail, new ImageLoader.ImageListener() {
+                @Override
+                public void onResponse(ImageLoader.ImageContainer response, boolean isImmediate) {
+                    placeLogo.setImageBitmap(response.getBitmap());
+
+                }
+
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                }
+            });
+        }
     }
 
 }
