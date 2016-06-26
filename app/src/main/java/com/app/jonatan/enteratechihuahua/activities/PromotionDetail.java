@@ -60,7 +60,7 @@ public class PromotionDetail extends AppCompatActivity implements OnMapReadyCall
         Window window = this.getWindow();
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-        window.setStatusBarColor(this.getResources().getColor(R.color.black));
+        //window.setStatusBarColor(this.getResources().getColor(R.color.black));
 
         //Toolbar toolbar = (Toolbar) findViewById(R.id.detail_toolbar);
         //setSupportActionBar(toolbar);
@@ -186,7 +186,7 @@ public class PromotionDetail extends AppCompatActivity implements OnMapReadyCall
 
         // Set the camera to the greatest possible zoom level that includes the
         // bounds
-        mMap.moveCamera(CameraUpdateFactory.newLatLngBounds(Chihuahua, 0));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngBounds(Chihuahua, 10));
 
         //mMap.addMarker(new MarkerOptions().position(sydney).title("Taxi"));
         if (mPromotion.getPlace().getUbications().size() != 0) {

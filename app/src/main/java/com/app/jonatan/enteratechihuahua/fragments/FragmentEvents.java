@@ -66,7 +66,7 @@ public class FragmentEvents extends Fragment implements SortListener, Promotions
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View layout = inflater.inflate(R.layout.fragment_restaurants, container, false);
+        View layout = inflater.inflate(R.layout.fragment_events, container, false);
         mTextError = (TextView) layout.findViewById(R.id.textVolleyError);
 
         mSwipeRefreshLayout = (SwipeRefreshLayout) layout.findViewById(R.id.swipePromotions);

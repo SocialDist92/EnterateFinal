@@ -92,7 +92,7 @@ public class ActivityMain extends ActionBarActivity implements MaterialTabListen
         Window window = this.getWindow();
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-        window.setStatusBarColor(this.getResources().getColor(R.color.black));
+        //window.setStatusBarColor(this.getResources().getColor(R.color.black));
 
         //  Declare a new thread to do a preference check
         Thread t = new Thread(new Runnable() {
