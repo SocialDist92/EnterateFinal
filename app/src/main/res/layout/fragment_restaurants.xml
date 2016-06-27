@@ -5,36 +5,6 @@
     tools:context="com.app.jonatan.enteratechihuahua.fragments.FragmentRestaurants"
     android:orientation="vertical">
 
-    <HorizontalScrollView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="3dp">
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Android Button 1" />
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Android Button 2" />
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Android Button 3" />
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Android Button 4" />
-        </LinearLayout>
-    </HorizontalScrollView>
-
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/swipePromotions"
         android:layout_width="match_parent"

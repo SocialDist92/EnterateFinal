@@ -1,5 +1,6 @@
 package com.app.jonatan.enteratechihuahua.fragments;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.MenuItemCompat;
@@ -16,8 +17,10 @@ import android.support.v7.widget.SearchView;
 import android.widget.TextView;
 
 import com.app.jonatan.enteratechihuahua.adapters.AdapterPromotion;
+import com.app.jonatan.enteratechihuahua.adapters.AdapterSubcategory;
 import com.app.jonatan.enteratechihuahua.callbacks.PromotionsLoadedListener;
 import com.app.jonatan.enteratechihuahua.extras.SortListener;
+import com.app.jonatan.enteratechihuahua.extras.Subcategory;
 import com.app.jonatan.enteratechihuahua.logging.L;
 import com.app.jonatan.enteratechihuahua.pojo.Promotion;
 import com.app.jonatan.enteratechihuahua.tasks.TaskLoadPromotions;
@@ -41,6 +44,7 @@ public class FragmentEvents extends Fragment implements SortListener, Promotions
     private SwipeRefreshLayout mSwipeRefreshLayout;
     private RecyclerView mRecyclerPromotions;
     private TextView mTextError;
+    private List<Subcategory> subcategories;
 
     public FragmentEvents() {
         // Required empty public constructor
@@ -78,7 +82,32 @@ public class FragmentEvents extends Fragment implements SortListener, Promotions
         mAdapter = new AdapterPromotion(getActivity());
         mRecyclerPromotions.setAdapter(mAdapter);
 
-        setHasOptionsMenu(true);
+        RecyclerView subcategoriesRv = (RecyclerView)layout.findViewById(R.id.subcategoryrecycler);
+        LinearLayoutManager llm =
+                new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
+
+        subcategoriesRv.setLayoutManager(llm);
+
+        subcategories = new ArrayList<>();
+
+        subcategories.add(new Subcategory(R.mipmap.ic_launcher, "Sub1"));
+        subcategories.add(new Subcategory(R.mipmap.ic_launcher, "Sub2"));
+        subcategories.add(new Subcategory(R.mipmap.ic_launcher, "Sub3"));
+        subcategories.add(new Subcategory(R.mipmap.ic_launcher, "Sub4"));
+        subcategories.add(new Subcategory(R.mipmap.ic_launcher, "Sub5"));
+        subcategories.add(new Subcategory(R.mipmap.ic_launcher, "Sub6"));
+        subcategories.add(new Subcategory(R.mipmap.ic_launcher, "Sub7"));
+        subcategories.add(new Subcategory(R.mipmap.ic_launcher, "Sub8"));
+        subcategories.add(new Subcategory(R.mipmap.ic_launcher, "Sub9"));
+        subcategories.add(new Subcategory(R.mipmap.ic_launcher, "Sub10"));
+        subcategories.add(new Subcategory(R.mipmap.ic_launcher, "Sub11"));
+        subcategories.add(new Subcategory(R.mipmap.ic_launcher, "Sub12 "));
+
+        AdapterSubcategory adapter = new AdapterSubcategory(subcategories);
+
+        subcategoriesRv.setAdapter(adapter);
+
+
 
         if (savedInstanceState != null) {
             mListPromotions = savedInstanceState.getParcelableArrayList(STATE_PROMOTIONS);
@@ -92,6 +121,8 @@ public class FragmentEvents extends Fragment implements SortListener, Promotions
         }
 
         mAdapter.setPromotions(mListPromotions);
+
+
         return layout;
     }
 

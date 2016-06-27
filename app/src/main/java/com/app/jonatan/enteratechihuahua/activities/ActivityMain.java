@@ -8,8 +8,10 @@ import android.os.Bundle;
 
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageLoader;
+import com.app.jonatan.enteratechihuahua.adapters.AdapterSubcategory;
 import com.app.jonatan.enteratechihuahua.extras.Constants;
 import com.app.jonatan.enteratechihuahua.extras.SortListener;
+import com.app.jonatan.enteratechihuahua.extras.Subcategory;
 import com.app.jonatan.enteratechihuahua.fragments.FragmentEvents;
 import com.app.jonatan.enteratechihuahua.network.VolleySingleton;
 import com.app.jonatan.enteratechihuahua.test.R;
@@ -25,6 +27,8 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
@@ -39,6 +43,9 @@ import com.app.jonatan.enteratechihuahua.fragments.FragmentGovernment;
 import com.app.jonatan.enteratechihuahua.fragments.FragmentRestaurants;
 import com.oguzdev.circularfloatingactionmenu.library.FloatingActionMenu;
 import com.oguzdev.circularfloatingactionmenu.library.SubActionButton;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import it.neokree.materialtabs.MaterialTab;
 import it.neokree.materialtabs.MaterialTabHost;
@@ -79,6 +86,7 @@ public class ActivityMain extends ActionBarActivity implements MaterialTabListen
     public String url;
     public String name;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -88,6 +96,7 @@ public class ActivityMain extends ActionBarActivity implements MaterialTabListen
         setupDrawer();
         mLogo = (ImageView) findViewById(R.id.custom_title);
         mLogo.setImageResource(R.drawable.enterate);
+
 
         Window window = this.getWindow();
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
