@@ -107,7 +107,7 @@ public class FragmentEvents extends Fragment implements SortListener, Promotions
 
         subcategoriesRv.setAdapter(adapter);
 
-
+        setHasOptionsMenu(true);
 
         if (savedInstanceState != null) {
             mListPromotions = savedInstanceState.getParcelableArrayList(STATE_PROMOTIONS);
