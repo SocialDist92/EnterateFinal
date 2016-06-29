@@ -96,12 +96,6 @@ public class FragmentEvents extends Fragment implements SortListener, Promotions
         subcategories.add(new Subcategory(R.mipmap.ic_launcher, "Sub4"));
         subcategories.add(new Subcategory(R.mipmap.ic_launcher, "Sub5"));
         subcategories.add(new Subcategory(R.mipmap.ic_launcher, "Sub6"));
-        subcategories.add(new Subcategory(R.mipmap.ic_launcher, "Sub7"));
-        subcategories.add(new Subcategory(R.mipmap.ic_launcher, "Sub8"));
-        subcategories.add(new Subcategory(R.mipmap.ic_launcher, "Sub9"));
-        subcategories.add(new Subcategory(R.mipmap.ic_launcher, "Sub10"));
-        subcategories.add(new Subcategory(R.mipmap.ic_launcher, "Sub11"));
-        subcategories.add(new Subcategory(R.mipmap.ic_launcher, "Sub12 "));
 
         AdapterSubcategory adapter = new AdapterSubcategory(subcategories);
 

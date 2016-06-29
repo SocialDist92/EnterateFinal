@@ -12,6 +12,7 @@ import com.app.jonatan.enteratechihuahua.adapters.AdapterSubcategory;
 import com.app.jonatan.enteratechihuahua.extras.Constants;
 import com.app.jonatan.enteratechihuahua.extras.SortListener;
 import com.app.jonatan.enteratechihuahua.extras.Subcategory;
+import com.app.jonatan.enteratechihuahua.fragments.FragmentBars;
 import com.app.jonatan.enteratechihuahua.fragments.FragmentEvents;
 import com.app.jonatan.enteratechihuahua.network.VolleySingleton;
 import com.app.jonatan.enteratechihuahua.test.R;
@@ -55,13 +56,29 @@ import me.tatarka.support.job.JobScheduler;
 public class ActivityMain extends ActionBarActivity implements MaterialTabListener, View.OnClickListener {
     public boolean isFirstStart;
     //int representing our 0th tab corresponding to the Fragment where search results are dispalyed
-    public static final int TAB_SEARCH_RESULTS = 0;
+    public static final int TAB_COMIDA = 0;
     //int corresponding to our 1st tab corresponding to the Fragment where box office hits are dispalyed
-    public static final int TAB_HITS = 1;
+    public static final int  TAB_BARES= 1;
     //int corresponding to our 2nd tab corresponding to the Fragment where upcoming movies are displayed
-    public static final int TAB_UPCOMING = 2;
+    public static final int  TAB_ANTROS= 2;
     //int corresponding to the number of tabs in our Activity
-    public static final int TAB_COUNT = 3;
+    public static final int TAB_CAFES = 3;
+
+    public static final int TAB_PLAZAS = 4;
+
+    public static final int TAB_EVENTOS = 5;
+
+    public static final int TAB_BELLEZA = 6;
+
+    public static final int TAB_MASCOTAS = 7;
+
+    public static final int TAB_GIMNASIOS = 8;
+
+    public static final int TAB_GUBERNAMENTALES = 9;
+
+    public static final int TAB_ESCUELAS = 10;
+
+    public static final int TAB_COUNT = 11;
     //int corresponding to the id of our JobSchedulerService
     private static final int JOB_ID = 100;
     //tag associated with the FAB menu button that sorts by name
@@ -151,7 +168,7 @@ public class ActivityMain extends ActionBarActivity implements MaterialTabListen
         mDrawerFragment = (FragmentNavigationDrawer)
                 getSupportFragmentManager().findFragmentById(R.id.fragment_navigation_drawer);
         mDrawerFragment.setUp(R.id.fragment_navigation_drawer, (DrawerLayout) findViewById
-                (R.id.drawer_layout), mToolbar,getIntent().getExtras().getString("url"),
+                        (R.id.drawer_layout), mToolbar,getIntent().getExtras().getString("url"),
                 getIntent().getExtras().getString("name"));
         String shit;
         shit = getIntent().getExtras().getString("url");
@@ -307,9 +324,13 @@ public class ActivityMain extends ActionBarActivity implements MaterialTabListen
 
     private class ViewPagerAdapter extends FragmentStatePagerAdapter {
 
-        int icons[] = {R.drawable.ic_action_event,
-                R.drawable.ic_action_restaurant,
-                R.drawable.ic_action_government};
+        int icons[] = {R.drawable.ic_action_restaurant, R.drawable.ic_action_event,
+                R.drawable.ic_action_alphabets, R.drawable.ic_action_alphabets,
+                R.drawable.ic_action_alphabets, R.drawable.ic_action_alphabets,
+                R.drawable.ic_action_alphabets, R.drawable.ic_action_alphabets,
+                R.drawable.ic_action_alphabets, R.drawable.ic_action_alphabets,
+                R.drawable.ic_action_alphabets,
+        };
 
         FragmentManager fragmentManager;
 
@@ -322,13 +343,37 @@ public class ActivityMain extends ActionBarActivity implements MaterialTabListen
             Fragment fragment = null;
 //            L.m("getItem called for " + num);
             switch (num) {
-                case TAB_SEARCH_RESULTS:
+                case TAB_COMIDA:
                     fragment = FragmentEvents.newInstance("", "");
                     break;
-                case TAB_HITS:
-                    fragment = FragmentRestaurants.newInstance("", "");
+                case TAB_BARES:
+                    fragment = FragmentBars.newInstance("", "");
                     break;
-                case TAB_UPCOMING:
+                case TAB_ANTROS:
+                    fragment = FragmentBars.newInstance("", "");
+                    break;
+                case TAB_CAFES:
+                    fragment = FragmentGovernment.newInstance("", "");
+                    break;
+                case TAB_PLAZAS:
+                    fragment = FragmentGovernment.newInstance("", "");
+                    break;
+                case TAB_EVENTOS:
+                    fragment = FragmentEvents.newInstance("", "");
+                    break;
+                case TAB_BELLEZA:
+                    fragment = FragmentGovernment.newInstance("", "");
+                    break;
+                case TAB_MASCOTAS:
+                    fragment = FragmentGovernment.newInstance("", "");
+                    break;
+                case TAB_GIMNASIOS:
+                    fragment = FragmentGovernment.newInstance("", "");
+                    break;
+                case TAB_GUBERNAMENTALES:
+                    fragment = FragmentGovernment.newInstance("", "");
+                    break;
+                case TAB_ESCUELAS:
                     fragment = FragmentGovernment.newInstance("", "");
                     break;
             }
