@@ -13,7 +13,14 @@ import com.app.jonatan.enteratechihuahua.extras.Constants;
 import com.app.jonatan.enteratechihuahua.extras.SortListener;
 import com.app.jonatan.enteratechihuahua.extras.Subcategory;
 import com.app.jonatan.enteratechihuahua.fragments.FragmentBars;
+import com.app.jonatan.enteratechihuahua.fragments.FragmentBeauty;
+import com.app.jonatan.enteratechihuahua.fragments.FragmentClubs;
+import com.app.jonatan.enteratechihuahua.fragments.FragmentCoffee;
 import com.app.jonatan.enteratechihuahua.fragments.FragmentEvents;
+import com.app.jonatan.enteratechihuahua.fragments.FragmentGym;
+import com.app.jonatan.enteratechihuahua.fragments.FragmentPets;
+import com.app.jonatan.enteratechihuahua.fragments.FragmentPlazas;
+import com.app.jonatan.enteratechihuahua.fragments.FragmentSchools;
 import com.app.jonatan.enteratechihuahua.network.VolleySingleton;
 import com.app.jonatan.enteratechihuahua.test.R;
 import com.daimajia.androidanimations.library.sliders.SlideOutDownAnimator;
@@ -344,37 +351,37 @@ public class ActivityMain extends ActionBarActivity implements MaterialTabListen
 //            L.m("getItem called for " + num);
             switch (num) {
                 case TAB_COMIDA:
-                    fragment = FragmentEvents.newInstance("", "");
+                    fragment = FragmentRestaurants.newInstance("", "");
                     break;
                 case TAB_BARES:
                     fragment = FragmentBars.newInstance("", "");
                     break;
                 case TAB_ANTROS:
-                    fragment = FragmentBars.newInstance("", "");
+                    fragment = FragmentClubs.newInstance("", "");
                     break;
                 case TAB_CAFES:
-                    fragment = FragmentGovernment.newInstance("", "");
+                    fragment = FragmentCoffee.newInstance("", "");
                     break;
                 case TAB_PLAZAS:
-                    fragment = FragmentGovernment.newInstance("", "");
+                    fragment = FragmentPlazas.newInstance("", "");
                     break;
                 case TAB_EVENTOS:
                     fragment = FragmentEvents.newInstance("", "");
                     break;
                 case TAB_BELLEZA:
-                    fragment = FragmentGovernment.newInstance("", "");
+                    fragment = FragmentBeauty.newInstance("", "");
                     break;
                 case TAB_MASCOTAS:
-                    fragment = FragmentGovernment.newInstance("", "");
+                    fragment = FragmentPets.newInstance("", "");
                     break;
                 case TAB_GIMNASIOS:
-                    fragment = FragmentGovernment.newInstance("", "");
+                    fragment = FragmentGym.newInstance("", "");
                     break;
                 case TAB_GUBERNAMENTALES:
                     fragment = FragmentGovernment.newInstance("", "");
                     break;
                 case TAB_ESCUELAS:
-                    fragment = FragmentGovernment.newInstance("", "");
+                    fragment = FragmentSchools.newInstance("", "");
                     break;
             }
             return fragment;

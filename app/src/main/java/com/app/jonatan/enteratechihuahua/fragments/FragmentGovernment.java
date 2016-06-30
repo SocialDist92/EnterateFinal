@@ -16,7 +16,9 @@ import android.support.v7.widget.SearchView;
 import android.widget.TextView;
 
 import com.app.jonatan.enteratechihuahua.adapters.AdapterPromotion;
+import com.app.jonatan.enteratechihuahua.adapters.AdapterSubcategory;
 import com.app.jonatan.enteratechihuahua.callbacks.PromotionsLoadedListener;
+import com.app.jonatan.enteratechihuahua.extras.Subcategory;
 import com.app.jonatan.enteratechihuahua.logging.L;
 import com.app.jonatan.enteratechihuahua.pojo.Promotion;
 import com.app.jonatan.enteratechihuahua.tasks.TaskLoadPromotions;
@@ -41,6 +43,7 @@ public class FragmentGovernment extends Fragment implements PromotionsLoadedList
     private SwipeRefreshLayout mSwipeRefreshLayout;
     private RecyclerView mRecyclerPromotions;
     private TextView mTextError;
+    private List<Subcategory> subcategories;
 
     public FragmentGovernment() {
         // Required empty public constructor
@@ -78,6 +81,27 @@ public class FragmentGovernment extends Fragment implements PromotionsLoadedList
 
         mAdapter = new AdapterPromotion(getActivity());
         mRecyclerPromotions.setAdapter(mAdapter);
+
+        RecyclerView subcategoriesRv = (RecyclerView) layout.findViewById(R.id.subcategoryrecycler);
+        LinearLayoutManager llm =
+                new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
+
+        subcategoriesRv.setLayoutManager(llm);
+
+        subcategories = new ArrayList<>();
+
+        subcategories.add(new Subcategory(R.mipmap.ic_launcher, "Sub1"));
+        subcategories.add(new Subcategory(R.mipmap.ic_launcher, "Sub2"));
+        subcategories.add(new Subcategory(R.mipmap.ic_launcher, "Sub3"));
+        subcategories.add(new Subcategory(R.mipmap.ic_launcher, "Sub4"));
+        subcategories.add(new Subcategory(R.mipmap.ic_launcher, "Sub5"));
+        subcategories.add(new Subcategory(R.mipmap.ic_launcher, "Sub6"));
+        subcategories.add(new Subcategory(R.mipmap.ic_launcher, "Sub7"));
+        subcategories.add(new Subcategory(R.mipmap.ic_launcher, "Sub7"));
+
+        AdapterSubcategory adapter = new AdapterSubcategory(subcategories);
+
+        subcategoriesRv.setAdapter(adapter);
 
         setHasOptionsMenu(true);
 

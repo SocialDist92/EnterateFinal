@@ -23,7 +23,9 @@ import com.android.volley.ServerError;
 import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
 import com.app.jonatan.enteratechihuahua.adapters.AdapterPromotion;
+import com.app.jonatan.enteratechihuahua.adapters.AdapterSubcategory;
 import com.app.jonatan.enteratechihuahua.callbacks.PromotionsLoadedListener;
+import com.app.jonatan.enteratechihuahua.extras.Subcategory;
 import com.app.jonatan.enteratechihuahua.logging.L;
 import com.app.jonatan.enteratechihuahua.pojo.Promotion;
 import com.app.jonatan.enteratechihuahua.tasks.TaskLoadPromotions;
@@ -47,6 +49,7 @@ public class FragmentRestaurants extends Fragment implements PromotionsLoadedLis
     private SwipeRefreshLayout mSwipeRefreshLayout;
     private RecyclerView mRecyclerPromotions;
     private TextView mTextError;
+    private List<Subcategory> subcategories;
 
     public FragmentRestaurants() {
         // Required empty public constructor
@@ -84,6 +87,20 @@ public class FragmentRestaurants extends Fragment implements PromotionsLoadedLis
 
         mAdapter = new AdapterPromotion(getActivity());
         mRecyclerPromotions.setAdapter(mAdapter);
+
+        RecyclerView subcategoriesRv = (RecyclerView)layout.findViewById(R.id.subcategorybarsrecycler);
+        LinearLayoutManager llm =
+                new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
+
+        subcategoriesRv.setLayoutManager(llm);
+
+        subcategories = new ArrayList<>();
+
+        subcategories.add(new Subcategory(R.mipmap.ic_facebook, "Sub1"));
+
+        AdapterSubcategory adapter = new AdapterSubcategory(subcategories);
+
+        subcategoriesRv.setAdapter(adapter);
 
         setHasOptionsMenu(true);
 
