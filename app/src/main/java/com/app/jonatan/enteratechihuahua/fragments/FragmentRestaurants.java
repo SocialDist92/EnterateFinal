@@ -13,7 +13,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.support.v7.widget.SearchView;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.NetworkError;
@@ -116,6 +118,7 @@ public class FragmentRestaurants extends Fragment implements PromotionsLoadedLis
         }
 
         mAdapter.setPromotions(mListPromotions);
+
         return layout;
     }
 
