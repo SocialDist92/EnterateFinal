@@ -336,7 +336,7 @@ public class ActivityMain extends ActionBarActivity implements MaterialTabListen
                 R.drawable.ic_action_alphabets, R.drawable.ic_action_alphabets,
                 R.drawable.ic_action_alphabets, R.drawable.ic_action_alphabets,
                 R.drawable.ic_action_alphabets, R.drawable.ic_action_alphabets,
-                R.drawable.ic_action_alphabets,
+                R.drawable.ic_action_alphabets
         };
 
         FragmentManager fragmentManager;

@@ -140,7 +140,7 @@ public class FragmentRestaurants extends Fragment implements PromotionsLoadedLis
         ArrayList<Promotion>  promotionsRestaurants = new ArrayList<>();
         for(Promotion promotion: listPromotions) {
             final String text = promotion.getPlace().getCategory();
-            if (text.contains("Restaurantes")) {
+            if (text.contains("Comida")) {
                 promotionsRestaurants.add(promotion);
             }
         }

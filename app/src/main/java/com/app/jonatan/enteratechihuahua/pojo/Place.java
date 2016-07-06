@@ -10,6 +10,7 @@ import java.util.ArrayList;
  */
 public class Place implements Parcelable {
     private String category;
+    private String subCategory;
     private String idAsStr;
     private String name;
     private String urlFacebook;
@@ -22,9 +23,10 @@ public class Place implements Parcelable {
     public Place() {
     }
 
-    public Place(String category, String idAsStr, String name, String urlFacebook,
+    public Place(String category, String subCategory, String idAsStr, String name, String urlFacebook,
                  String urlImageLogo, String urlLocation, String urlTwitter) {
         this.category = category;
+        this.subCategory = subCategory;
         this.idAsStr = idAsStr;
         this.name = name;
         this.urlFacebook = urlFacebook;
@@ -36,6 +38,7 @@ public class Place implements Parcelable {
 
     protected Place(Parcel in) {
         category = in.readString();
+        subCategory = in.readString();
         idAsStr = in.readString();
         name = in.readString();
         urlFacebook = in.readString();
@@ -65,6 +68,7 @@ public class Place implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(category);
+        dest.writeString(subCategory);
         dest.writeString(idAsStr);
         dest.writeString(name);
         dest.writeString(urlFacebook);
@@ -80,6 +84,14 @@ public class Place implements Parcelable {
 
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    public String getSubCategory() {
+        return subCategory;
+    }
+
+    public void setSubCategory(String subCategory) {
+        this.subCategory = subCategory;
     }
 
     public String getIdAsStr() {

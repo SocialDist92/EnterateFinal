@@ -19,6 +19,7 @@ import static com.app.jonatan.enteratechihuahua.extras.Keys.EndpointPlacePromoti
 import static com.app.jonatan.enteratechihuahua.extras.Keys.EndpointPlacePromotion.KEY_LONGITUDE;
 import static com.app.jonatan.enteratechihuahua.extras.Keys.EndpointPlacePromotion.KEY_NAME;
 import static com.app.jonatan.enteratechihuahua.extras.Keys.EndpointPlacePromotion.KEY_PLACE;
+import static com.app.jonatan.enteratechihuahua.extras.Keys.EndpointPlacePromotion.KEY_SUB;
 import static com.app.jonatan.enteratechihuahua.extras.Keys.EndpointPlacePromotion.KEY_UBICATIONS;
 import static com.app.jonatan.enteratechihuahua.extras.Keys.EndpointPlacePromotion.KEY_URL_IMAGE_LOGO;
 
@@ -38,6 +39,7 @@ public class Parser {
                     String id = Constants.NA;
                     String placeName = Constants.NA;
                     String placeCategory = Constants.NA;
+                    String placeSubCategory = Constants.NA;
                     String placeUrlImageLogo = Constants.NA;
                     String placeId = Constants.NA;
                     ArrayList<Ubication> ubications = new ArrayList<>();
@@ -65,6 +67,10 @@ public class Parser {
 
                         if (Utils.contains(objectPlace, KEY_CATEGORY)) {
                             placeCategory = objectPlace.getString(KEY_CATEGORY);
+                        }
+
+                        if (Utils.contains(objectPlace, KEY_SUB)) {
+                            placeSubCategory = objectPlace.getString(KEY_SUB);
                         }
 
                         if (Utils.contains(objectPlace, KEY_URL_IMAGE_LOGO)) {
@@ -106,6 +112,7 @@ public class Parser {
                     Promotion promotion = new Promotion();
 
                     place.setCategory(placeCategory);
+                    place.setSubCategory(placeSubCategory);
                     place.setUrlImageLogo(placeUrlImageLogo);
                     place.setName(placeName);
                     place.setIdAsStr(placeId);

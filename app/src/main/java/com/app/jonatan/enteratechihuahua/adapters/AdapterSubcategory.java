@@ -20,6 +20,7 @@ public class AdapterSubcategory extends
         RecyclerView.Adapter<AdapterSubcategory.SubcategoryViewHolder> {
 
     List<Subcategory> sub;
+    private int mPreviousPosition = 0;
 
     public AdapterSubcategory(List<Subcategory> sub){
         this.sub = sub;
@@ -38,6 +39,13 @@ public class AdapterSubcategory extends
         holder.subName.setText(sub.get(position).getSubName());
         holder.subIcon.setImageResource(sub.get(position).getIcon());
 
+
+        holder.cv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                System.out.println("presiono cardview");
+            }
+        });
     }
 
     @Override

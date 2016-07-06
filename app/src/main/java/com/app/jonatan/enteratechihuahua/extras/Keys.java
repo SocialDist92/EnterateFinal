@@ -7,6 +7,7 @@ public interface Keys {
     public interface EndpointPlacePromotion {
         public static final String KEY_ID = "idAsStr";
         public static final String KEY_CATEGORY = "category";
+        public static final String KEY_SUB = "subCategory";
         public static final String KEY_NAME = "name";
         public static final String KEY_URL_FACEBOOK = "urlFacebook";
         public static final String KEY_URL_IMAGE_LOGO = "urlImageLogo";

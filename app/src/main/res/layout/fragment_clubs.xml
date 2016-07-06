@@ -19,7 +19,7 @@
                 android:id="@+id/subcategorybarsrecycler"
                 />
             <android.support.v7.widget.RecyclerView
-                android:layout_below="@+id/subcategoryrecycler"
+                android:layout_below="@+id/subcategorybarsrecycler"
                 android:id="@+id/listPromotions"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
