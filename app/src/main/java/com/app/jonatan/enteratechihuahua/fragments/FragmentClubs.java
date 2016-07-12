@@ -86,21 +86,6 @@ public class FragmentClubs extends Fragment implements PromotionsLoadedListener,
         mAdapter = new AdapterPromotion(getActivity());
         mRecyclerPromotions.setAdapter(mAdapter);
 
-        RecyclerView subcategoriesRv = (RecyclerView)layout.findViewById(R.id.subcategorybarsrecycler);
-        LinearLayoutManager llm =
-                new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
-
-        subcategoriesRv.setLayoutManager(llm);
-
-        subcategories = new ArrayList<>();
-
-        subcategories.add(new Subcategory(R.mipmap.ic_facebook, "Sub1"));
-        subcategories.add(new Subcategory(R.mipmap.ic_facebook, "Sub2"));
-        subcategories.add(new Subcategory(R.mipmap.ic_facebook, "Sub3"));
-
-        AdapterSubcategory adapter = new AdapterSubcategory(subcategories);
-
-        subcategoriesRv.setAdapter(adapter);
 
         setHasOptionsMenu(true);
 

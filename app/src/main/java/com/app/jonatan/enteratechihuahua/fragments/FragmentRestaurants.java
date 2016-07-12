@@ -98,7 +98,25 @@ public class FragmentRestaurants extends Fragment implements PromotionsLoadedLis
 
         subcategories = new ArrayList<>();
 
-        subcategories.add(new Subcategory(R.mipmap.ic_facebook, "Sub1"));
+        subcategories.add(new Subcategory(R.mipmap.ic_tacos, "Tacos"));
+        subcategories.add(new Subcategory(R.mipmap.ic_oriental, "Oriental"));
+        subcategories.add(new Subcategory(R.mipmap.ic_italian, "Italiana"));
+        subcategories.add(new Subcategory(R.mipmap.ic_mexican, "Mexicana"));
+        subcategories.add(new Subcategory(R.mipmap.ic_expensivefood, "Alta Cocina"));
+        subcategories.add(new Subcategory(R.mipmap.ic_steak, "Cortes"));
+        subcategories.add(new Subcategory(R.mipmap.ic_hamburguer, "Hamburguesas"));
+        subcategories.add(new Subcategory(R.mipmap.ic_togo, "Para Llevar"));
+        subcategories.add(new Subcategory(R.mipmap.ic_american, "Americana"));
+        subcategories.add(new Subcategory(R.mipmap.ic_express, "Rápida"));
+        subcategories.add(new Subcategory(R.mipmap.ic_icecream, "Nieves"));
+        subcategories.add(new Subcategory(R.mipmap.ic_family, "Familiar"));
+        subcategories.add(new Subcategory(R.mipmap.ic_economic, "Económica"));
+        subcategories.add(new Subcategory(R.mipmap.ic_breakfast, "Desayunos"));
+        subcategories.add(new Subcategory(R.mipmap.ic_wings, "Alitas"));
+        subcategories.add(new Subcategory(R.mipmap.ic_china, "China"));
+        subcategories.add(new Subcategory(R.mipmap.ic_salads, "Ensaladas"));
+        subcategories.add(new Subcategory(R.mipmap.ic_sea, "Mariscos"));
+        subcategories.add(new Subcategory(R.mipmap.ic_nutritional, "Nutritiva"));
 
         AdapterSubcategory adapter = new AdapterSubcategory(subcategories);
 

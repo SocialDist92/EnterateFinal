@@ -331,12 +331,12 @@ public class ActivityMain extends ActionBarActivity implements MaterialTabListen
 
     private class ViewPagerAdapter extends FragmentStatePagerAdapter {
 
-        int icons[] = {R.drawable.ic_action_restaurant, R.drawable.ic_action_event,
-                R.drawable.ic_action_alphabets, R.drawable.ic_action_alphabets,
-                R.drawable.ic_action_alphabets, R.drawable.ic_action_alphabets,
-                R.drawable.ic_action_alphabets, R.drawable.ic_action_alphabets,
-                R.drawable.ic_action_alphabets, R.drawable.ic_action_alphabets,
-                R.drawable.ic_action_alphabets
+        int icons[] = {R.mipmap.ic_food, R.mipmap.ic_bars,
+                R.mipmap.ic_clubs, R.mipmap.ic_coffee,
+                R.mipmap.ic_plaza, R.mipmap.ic_events,
+                R.mipmap.ic_beauty, R.mipmap.ic_pets,
+                R.mipmap.ic_gym, R.mipmap.ic_government,
+                R.mipmap.ic_schools
         };
 
         FragmentManager fragmentManager;

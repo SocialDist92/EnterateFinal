@@ -87,8 +87,12 @@ public class FragmentBars extends Fragment implements SortListener, PromotionsLo
 
         subcategories = new ArrayList<>();
 
-        subcategories.add(new Subcategory(R.mipmap.ic_facebook, "Sub1"));
-        subcategories.add(new Subcategory(R.mipmap.ic_facebook, "Sub2"));
+        subcategories.add(new Subcategory(R.mipmap.ic_sport, "SportBar"));
+        subcategories.add(new Subcategory(R.mipmap.ic_contemporary, "Contempo"));
+        subcategories.add(new Subcategory(R.mipmap.ic_musical, "Musical"));
+        subcategories.add(new Subcategory(R.mipmap.ic_cantina, "Cantinas"));
+        subcategories.add(new Subcategory(R.mipmap.ic_drive, "DriveInn"));
+
 
         AdapterSubcategory adapter = new AdapterSubcategory(subcategories);
 
