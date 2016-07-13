@@ -94,10 +94,8 @@ public class FragmentCoffee extends Fragment implements PromotionsLoadedListener
 
         subcategories = new ArrayList<>();
 
-        subcategories.add(new Subcategory(R.mipmap.ic_facebook, "Sub1"));
-        subcategories.add(new Subcategory(R.mipmap.ic_facebook, "Sub2"));
-        subcategories.add(new Subcategory(R.mipmap.ic_facebook, "Sub3"));
-        subcategories.add(new Subcategory(R.mipmap.ic_facebook, "Sub4"));
+        subcategories.add(new Subcategory(R.mipmap.ic_petfriendly, "Pet Friendly"));
+
 
         AdapterSubcategory adapter = new AdapterSubcategory(subcategories);
 

@@ -87,10 +87,13 @@ public class FragmentSchools extends Fragment implements PromotionsLoadedListene
 
         subcategories = new ArrayList<>();
 
-        subcategories.add(new Subcategory(R.mipmap.ic_facebook, "Sub1"));
-        subcategories.add(new Subcategory(R.mipmap.ic_facebook, "Sub2"));
-        subcategories.add(new Subcategory(R.mipmap.ic_facebook, "Sub3"));
-  
+        subcategories.add(new Subcategory(R.mipmap.ic_kindergarden, "Preescolar"));
+        subcategories.add(new Subcategory(R.mipmap.ic_elementary, "Primaria"));
+        subcategories.add(new Subcategory(R.mipmap.ic_secondary, "Secundaria"));
+        subcategories.add(new Subcategory(R.mipmap.ic_highschool, "Medio Superior"));
+        subcategories.add(new Subcategory(R.mipmap.ic_college, "Superior"));
+        subcategories.add(new Subcategory(R.mipmap.ic_other, "Otras"));
+
 
         AdapterSubcategory adapter = new AdapterSubcategory(subcategories);
 

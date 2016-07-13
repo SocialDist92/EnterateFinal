@@ -87,13 +87,10 @@ public class FragmentBeauty extends Fragment implements SortListener, Promotions
 
         subcategories = new ArrayList<>();
 
-        subcategories.add(new Subcategory(R.mipmap.ic_facebook, "Sub1"));
-        subcategories.add(new Subcategory(R.mipmap.ic_facebook, "Sub2"));
-        subcategories.add(new Subcategory(R.mipmap.ic_facebook, "Sub3"));
-        subcategories.add(new Subcategory(R.mipmap.ic_facebook, "Sub4"));
-        subcategories.add(new Subcategory(R.mipmap.ic_facebook, "Sub5"));
-        subcategories.add(new Subcategory(R.mipmap.ic_facebook, "Sub6"));
-        subcategories.add(new Subcategory(R.mipmap.ic_facebook, "Sub7"));
+        subcategories.add(new Subcategory(R.mipmap.ic_beautysalon, "Salones"));
+        subcategories.add(new Subcategory(R.mipmap.ic_spa, "Spa"));
+        subcategories.add(new Subcategory(R.mipmap.ic_nails, "Uñas"));
+        subcategories.add(new Subcategory(R.mipmap.ic_makeup, "Maquillaje"));
 
         AdapterSubcategory adapter = new AdapterSubcategory(subcategories);
 

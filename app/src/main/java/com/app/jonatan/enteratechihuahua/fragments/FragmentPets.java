@@ -87,14 +87,10 @@ public class FragmentPets extends Fragment implements SortListener, PromotionsLo
 
         subcategories = new ArrayList<>();
 
-        subcategories.add(new Subcategory(R.mipmap.ic_launcher, "Sub1"));
-        subcategories.add(new Subcategory(R.mipmap.ic_launcher, "Sub2"));
-        subcategories.add(new Subcategory(R.mipmap.ic_launcher, "Sub3"));
-        subcategories.add(new Subcategory(R.mipmap.ic_launcher, "Sub4"));
-        subcategories.add(new Subcategory(R.mipmap.ic_launcher, "Sub5"));
-        subcategories.add(new Subcategory(R.mipmap.ic_launcher, "Sub6"));
-        subcategories.add(new Subcategory(R.mipmap.ic_launcher, "Sub7"));
-        subcategories.add(new Subcategory(R.mipmap.ic_launcher, "Sub7"));
+        subcategories.add(new Subcategory(R.mipmap.ic_vet, "Médico"));
+        subcategories.add(new Subcategory(R.mipmap.ic_grooming, "Estética"));
+        subcategories.add(new Subcategory(R.mipmap.ic_pethotel, "Hospedaje"));
+        subcategories.add(new Subcategory(R.mipmap.ic_accesories, "Accesorios"));
 
         AdapterSubcategory adapter = new AdapterSubcategory(subcategories);
 

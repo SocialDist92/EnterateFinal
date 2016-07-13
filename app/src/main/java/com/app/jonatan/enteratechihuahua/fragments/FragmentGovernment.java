@@ -90,14 +90,14 @@ public class FragmentGovernment extends Fragment implements PromotionsLoadedList
 
         subcategories = new ArrayList<>();
 
-        subcategories.add(new Subcategory(R.mipmap.ic_launcher, "Sub1"));
-        subcategories.add(new Subcategory(R.mipmap.ic_launcher, "Sub2"));
-        subcategories.add(new Subcategory(R.mipmap.ic_launcher, "Sub3"));
-        subcategories.add(new Subcategory(R.mipmap.ic_launcher, "Sub4"));
-        subcategories.add(new Subcategory(R.mipmap.ic_launcher, "Sub5"));
-        subcategories.add(new Subcategory(R.mipmap.ic_launcher, "Sub6"));
-        subcategories.add(new Subcategory(R.mipmap.ic_launcher, "Sub7"));
-        subcategories.add(new Subcategory(R.mipmap.ic_launcher, "Sub7"));
+        subcategories.add(new Subcategory(R.mipmap.ic_urbanclean, "Aseo Urbano"));
+        subcategories.add(new Subcategory(R.mipmap.ic_jmas, "JMAS"));
+        subcategories.add(new Subcategory(R.mipmap.ic_security, "Seguridad Pública"));
+        subcategories.add(new Subcategory(R.mipmap.ic_predial, "Predial"));
+        subcategories.add(new Subcategory(R.mipmap.ic_rental, "Recaudación de Rentas"));
+        subcategories.add(new Subcategory(R.mipmap.ic_congress, "Congreso del Estado"));
+        subcategories.add(new Subcategory(R.mipmap.ic_state, "Servicios Estatales"));
+        subcategories.add(new Subcategory(R.mipmap.ic_coesvi, "COESVI"));
 
         AdapterSubcategory adapter = new AdapterSubcategory(subcategories);
 
