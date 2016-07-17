@@ -48,6 +48,7 @@ public class FragmentCoffee extends Fragment implements PromotionsLoadedListener
     private RecyclerView mRecyclerPromotions;
     private TextView mTextError;
     private List<Subcategory> subcategories;
+    private AdapterSubcategory adapter;
 
     public FragmentCoffee() {
         // Required empty public constructor
@@ -97,7 +98,7 @@ public class FragmentCoffee extends Fragment implements PromotionsLoadedListener
         subcategories.add(new Subcategory(R.mipmap.ic_petfriendly, "Pet Friendly"));
 
 
-        AdapterSubcategory adapter = new AdapterSubcategory(subcategories);
+        adapter = new AdapterSubcategory(subcategories);
 
         subcategoriesRv.setAdapter(adapter);
 
@@ -115,6 +116,8 @@ public class FragmentCoffee extends Fragment implements PromotionsLoadedListener
         }
 
         mAdapter.setPromotions(mListPromotions);
+        adapter.setPromotions(mListPromotions);
+        adapter.setAdapterPromotions(mAdapter);
         return layout;
     }
 
@@ -136,12 +139,13 @@ public class FragmentCoffee extends Fragment implements PromotionsLoadedListener
         ArrayList<Promotion>  promotionsRestaurants = new ArrayList<>();
         for(Promotion promotion: listPromotions) {
             final String text = promotion.getPlace().getCategory();
-            if (text.contains("Antros")) {
+            if (text.contains("Cafes")) {
                 promotionsRestaurants.add(promotion);
             }
         }
         mListPromotions = promotionsRestaurants;
         mAdapter.setPromotions(promotionsRestaurants);
+        adapter.setPromotions(mListPromotions);
     }
 
     @Override

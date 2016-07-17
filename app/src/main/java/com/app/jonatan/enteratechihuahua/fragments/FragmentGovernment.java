@@ -44,6 +44,7 @@ public class FragmentGovernment extends Fragment implements PromotionsLoadedList
     private RecyclerView mRecyclerPromotions;
     private TextView mTextError;
     private List<Subcategory> subcategories;
+    private AdapterSubcategory adapter;
 
     public FragmentGovernment() {
         // Required empty public constructor
@@ -99,7 +100,7 @@ public class FragmentGovernment extends Fragment implements PromotionsLoadedList
         subcategories.add(new Subcategory(R.mipmap.ic_state, "Servicios Estatales"));
         subcategories.add(new Subcategory(R.mipmap.ic_coesvi, "COESVI"));
 
-        AdapterSubcategory adapter = new AdapterSubcategory(subcategories);
+        adapter = new AdapterSubcategory(subcategories);
 
         subcategoriesRv.setAdapter(adapter);
 
@@ -117,6 +118,8 @@ public class FragmentGovernment extends Fragment implements PromotionsLoadedList
         }
 
         mAdapter.setPromotions(mListPromotions);
+        adapter.setPromotions(mListPromotions);
+        adapter.setAdapterPromotions(mAdapter);
         return layout;
     }
 
@@ -164,6 +167,7 @@ public class FragmentGovernment extends Fragment implements PromotionsLoadedList
         }
         mListPromotions = promotionsGovernment;
         mAdapter.setPromotions(promotionsGovernment);
+        adapter.setPromotions(mListPromotions);
     }
 
     @Override

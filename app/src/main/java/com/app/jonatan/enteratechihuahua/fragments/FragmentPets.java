@@ -42,6 +42,7 @@ public class FragmentPets extends Fragment implements SortListener, PromotionsLo
     private RecyclerView mRecyclerPromotions;
     private TextView mTextError;
     private List<Subcategory> subcategories;
+    private AdapterSubcategory adapter;
 
     public FragmentPets() {
         // Required empty public constructor
@@ -92,7 +93,7 @@ public class FragmentPets extends Fragment implements SortListener, PromotionsLo
         subcategories.add(new Subcategory(R.mipmap.ic_pethotel, "Hospedaje"));
         subcategories.add(new Subcategory(R.mipmap.ic_accesories, "Accesorios"));
 
-        AdapterSubcategory adapter = new AdapterSubcategory(subcategories);
+        adapter = new AdapterSubcategory(subcategories);
 
         subcategoriesRv.setAdapter(adapter);
 
@@ -110,6 +111,8 @@ public class FragmentPets extends Fragment implements SortListener, PromotionsLo
         }
 
         mAdapter.setPromotions(mListPromotions);
+        adapter.setPromotions(mListPromotions);
+        adapter.setAdapterPromotions(mAdapter);
 
 
         return layout;
@@ -167,13 +170,14 @@ public class FragmentPets extends Fragment implements SortListener, PromotionsLo
         ArrayList<Promotion> promotionsEventos = new ArrayList<>();
         for (Promotion promotion : listPromotions) {
             final String text = promotion.getPlace().getCategory();
-            if (text.contains("Eventos")) {
+            if (text.contains("Mascotas")) {
                 promotionsEventos.add(promotion);
             }
         }
 
         mListPromotions = promotionsEventos;
         mAdapter.setPromotions(promotionsEventos);
+        adapter.setPromotions(mListPromotions);
 
     }
 

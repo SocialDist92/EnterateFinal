@@ -45,6 +45,7 @@ public class FragmentEvents extends Fragment implements SortListener, Promotions
     private RecyclerView mRecyclerPromotions;
     private TextView mTextError;
     private List<Subcategory> subcategories;
+    private AdapterSubcategory adapter;
 
     public FragmentEvents() {
         // Required empty public constructor
@@ -101,7 +102,7 @@ public class FragmentEvents extends Fragment implements SortListener, Promotions
 
 
 
-        AdapterSubcategory adapter = new AdapterSubcategory(subcategories);
+        adapter = new AdapterSubcategory(subcategories);
 
         subcategoriesRv.setAdapter(adapter);
 
@@ -119,6 +120,8 @@ public class FragmentEvents extends Fragment implements SortListener, Promotions
         }
 
         mAdapter.setPromotions(mListPromotions);
+        adapter.setPromotions(mListPromotions);
+        adapter.setAdapterPromotions(mAdapter);
 
 
         return layout;
@@ -183,6 +186,7 @@ public class FragmentEvents extends Fragment implements SortListener, Promotions
 
         mListPromotions = promotionsEventos;
         mAdapter.setPromotions(promotionsEventos);
+        adapter.setPromotions(mListPromotions);
 
     }
 

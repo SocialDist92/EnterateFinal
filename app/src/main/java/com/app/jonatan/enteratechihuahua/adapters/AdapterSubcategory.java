@@ -9,8 +9,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.app.jonatan.enteratechihuahua.extras.Subcategory;
+import com.app.jonatan.enteratechihuahua.pojo.Promotion;
 import com.app.jonatan.enteratechihuahua.test.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -20,6 +22,17 @@ public class AdapterSubcategory extends
         RecyclerView.Adapter<AdapterSubcategory.SubcategoryViewHolder> {
 
     List<Subcategory> sub;
+    List<Promotion> promotions;
+    AdapterPromotion adapterPromotions;
+
+    public void setPromotions(List<Promotion> promotions) {
+        this.promotions = promotions;
+    }
+
+    public void setAdapterPromotions(AdapterPromotion adapterPromotions) {
+        this.adapterPromotions = adapterPromotions;
+    }
+
     private int mPreviousPosition = 0;
 
     public AdapterSubcategory(List<Subcategory> sub){
@@ -38,12 +51,25 @@ public class AdapterSubcategory extends
     public void onBindViewHolder(SubcategoryViewHolder holder, int position) {
         holder.subName.setText(sub.get(position).getSubName());
         holder.subIcon.setImageResource(sub.get(position).getIcon());
+        final int pos = position;
 
 
         holder.cv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 System.out.println("presiono cardview");
+                System.out.println("promotions ---"+ promotions );
+                System.out.println("=>" + sub.get(pos).getSubName());
+                ArrayList<Promotion> promotionsSub = new ArrayList<>();
+                for(Promotion promotion: promotions) {
+                    final String text = promotion.getPlace().getSubCategory();
+                    if (text.contains(sub.get(pos).getSubName())) {
+                        promotionsSub.add(promotion);
+                    }
+                }
+                //mListPromotions = promotionsRestaurants;
+                System.out.println("promotions filtered ---"+ promotionsSub );
+                adapterPromotions.setPromotions(promotionsSub);
             }
         });
     }

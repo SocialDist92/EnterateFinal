@@ -1,5 +1,6 @@
 package com.app.jonatan.enteratechihuahua.activities;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
@@ -9,6 +10,7 @@ import android.os.Bundle;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageLoader;
 import com.app.jonatan.enteratechihuahua.adapters.AdapterSubcategory;
+import com.app.jonatan.enteratechihuahua.callbacks.TaxiSitesLoadedListener;
 import com.app.jonatan.enteratechihuahua.extras.Constants;
 import com.app.jonatan.enteratechihuahua.extras.SortListener;
 import com.app.jonatan.enteratechihuahua.extras.Subcategory;
@@ -21,7 +23,10 @@ import com.app.jonatan.enteratechihuahua.fragments.FragmentGym;
 import com.app.jonatan.enteratechihuahua.fragments.FragmentPets;
 import com.app.jonatan.enteratechihuahua.fragments.FragmentPlazas;
 import com.app.jonatan.enteratechihuahua.fragments.FragmentSchools;
+import com.app.jonatan.enteratechihuahua.logging.L;
 import com.app.jonatan.enteratechihuahua.network.VolleySingleton;
+import com.app.jonatan.enteratechihuahua.pojo.TaxiSite;
+import com.app.jonatan.enteratechihuahua.tasks.TaskLoadTaxiSites;
 import com.app.jonatan.enteratechihuahua.test.R;
 import com.daimajia.androidanimations.library.sliders.SlideOutDownAnimator;
 import com.github.paolorotolo.appintro.AppIntro;
@@ -60,7 +65,7 @@ import it.neokree.materialtabs.MaterialTabHost;
 import it.neokree.materialtabs.MaterialTabListener;
 import me.tatarka.support.job.JobScheduler;
 
-public class ActivityMain extends ActionBarActivity implements MaterialTabListener, View.OnClickListener {
+public class ActivityMain extends ActionBarActivity implements MaterialTabListener, View.OnClickListener, TaxiSitesLoadedListener {
     public boolean isFirstStart;
     //int representing our 0th tab corresponding to the Fragment where search results are dispalyed
     public static final int TAB_COMIDA = 0;
@@ -109,6 +114,7 @@ public class ActivityMain extends ActionBarActivity implements MaterialTabListen
     private ImageView mLogo;
     public String url;
     public String name;
+    private ArrayList<TaxiSite> taxiSites  = new ArrayList<>();
 
 
     @Override
@@ -121,6 +127,7 @@ public class ActivityMain extends ActionBarActivity implements MaterialTabListen
         mLogo = (ImageView) findViewById(R.id.custom_title);
         mLogo.setImageResource(R.drawable.enterate);
 
+        new TaskLoadTaxiSites(this).execute();
 
         Window window = this.getWindow();
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
@@ -207,17 +214,27 @@ public class ActivityMain extends ActionBarActivity implements MaterialTabListen
     }
 
     private void setupFAB() {
-        /*//define the icon for the main floating action button
+        //define the icon for the main floating action button
         ImageView iconFAB = new ImageView(this);
-        iconFAB.setImageResource(R.drawable.ic_action_new);
+        iconFAB.setImageResource(R.drawable.ic_taxi_light);
 
         //set the appropriate background for the main floating action button along with its icon
         mFAB = new com.oguzdev.circularfloatingactionmenu.library.FloatingActionButton.Builder(this)
                 .setContentView(iconFAB)
                 .setBackgroundDrawable(R.drawable.selector_button_red)
                 .build();
+        mFAB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Context context = v.getContext();
+                Intent intent = new Intent(context, TaxiMapsActivity.class);
+                intent.putParcelableArrayListExtra("taxis", taxiSites);
+                //intent.putExtra("promotion", currentPromotion);
+                context.startActivity(intent);
+            }
+        });
 
-        //define the icons for the sub action buttons
+        /*//define the icons for the sub action buttons
         ImageView iconSortName = new ImageView(this);
         iconSortName.setImageResource(R.drawable.ic_action_alphabets);
         ImageView iconSortDate = new ImageView(this);
@@ -251,6 +268,7 @@ public class ActivityMain extends ActionBarActivity implements MaterialTabListen
                 .addSubActionView(buttonSortRatings)
                 .attachTo(mFAB)
                 .build();*/
+
     }
 
     @Override
@@ -326,6 +344,14 @@ public class ActivityMain extends ActionBarActivity implements MaterialTabListen
             }
             mFAB.setTranslationX(slideOffset * 200);
         }
+        mFAB.setTranslationX(slideOffset * 200);
+    }
+
+    @Override
+    public void onTaxiSitesLoaded(ArrayList<TaxiSite> listTaxiSites) {
+        L.m("TaxiMapsActivity: onTaxiSiteLoaded");
+        taxiSites = listTaxiSites;
+        System.out.println("taxis cargados"+taxiSites);
     }
 
 

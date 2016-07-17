@@ -40,8 +40,7 @@ import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-public class PromotionDetail extends AppCompatActivity implements OnMapReadyCallback,
-        GoogleMap.OnMarkerClickListener {
+public class PromotionDetail extends AppCompatActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
     private Promotion mPromotion;
@@ -157,27 +156,10 @@ public class PromotionDetail extends AppCompatActivity implements OnMapReadyCall
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         LatLng sydney = new LatLng(28.6407642, -106.0726933);
-        LatLng taxi = new LatLng(28.638502,-106.0734079);
-        LatLng taxi2 = new LatLng(28.6371743,-106.0745948);
-        LatLng taxi3 = new LatLng(28.6393783,-106.0731112);
-        LatLng taxi4 = new LatLng(28.6373318,-106.0775002);
-
+        LatLng chihuahua = new LatLng(28.6148879, -106.015528);
 
         // map is a GoogleMap object
         // Add a marker in Sydney and move the camera
-
-
-
-        marker = mMap.addMarker(new MarkerOptions().position(sydney).title("Taxi")
-                .icon(BitmapDescriptorFactory.fromResource(R.drawable.taxi)));
-        marker = mMap.addMarker(new MarkerOptions().position(taxi).title("Taxi")
-                .icon(BitmapDescriptorFactory.fromResource(R.drawable.taxi)));
-        marker = mMap.addMarker(new MarkerOptions().position(taxi2).title("Taxi")
-                .icon(BitmapDescriptorFactory.fromResource(R.drawable.taxi)));
-        marker = mMap.addMarker(new MarkerOptions().position(taxi3).title("Taxi")
-                .icon(BitmapDescriptorFactory.fromResource(R.drawable.taxi)));
-        marker = mMap.addMarker(new MarkerOptions().position(taxi4).title("Taxi")
-                .icon(BitmapDescriptorFactory.fromResource(R.drawable.taxi)));
 
 
         // Create a LatLngBounds that includes Australia.
@@ -186,7 +168,7 @@ public class PromotionDetail extends AppCompatActivity implements OnMapReadyCall
 
         // Set the camera to the greatest possible zoom level that includes the
         // bounds
-        mMap.moveCamera(CameraUpdateFactory.newLatLngBounds(Chihuahua, 10));
+        //mMap.moveCamera(CameraUpdateFactory.newLatLngBounds(Chihuahua, 10));
 
         //mMap.addMarker(new MarkerOptions().position(sydney).title("Taxi"));
         if (mPromotion.getPlace().getUbications().size() != 0) {
@@ -199,17 +181,10 @@ public class PromotionDetail extends AppCompatActivity implements OnMapReadyCall
             }
                 final Ubication ubication = mPromotion.getPlace().getUbications().get(0);
                 final LatLng first = new LatLng(Double.parseDouble(ubication.getLatitud()), Double.parseDouble(ubication.getLongitude()));
-                mMap.addMarker(new MarkerOptions().position(first).title("Marker in Starbucks"));
-                mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+                //mMap.addMarker(new MarkerOptions().position(first).title("Marker in Starbucks"));
+               // mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+               mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(Chihuahua.getCenter(), 11));
         }
-
-        mMap.addMarker(new MarkerOptions()
-
-                .position(new LatLng(28.639884,-106.0720454))
-                .title("Hello world")
-                .icon(BitmapDescriptorFactory.fromResource(R.drawable.person)));
-
-        mMap.setOnMarkerClickListener(this);
 
     }
 
@@ -248,38 +223,5 @@ public class PromotionDetail extends AppCompatActivity implements OnMapReadyCall
                 }
             });
         }
-    }
-
-    @Override
-    public boolean onMarkerClick(Marker marker) {
-        if (marker.equals(marker))
-        {
-            //handle click here
-            /*
-            Intent callIntent = new Intent(Intent.ACTION_DIAL);
-            callIntent.setData(Uri.parse("tel:123456789"));
-            startActivity(callIntent);
-
-            Toast.makeText(this, "Llamando",
-                    Toast.LENGTH_LONG).show();*/
-
-            AlertDialog alertDialog = new AlertDialog.Builder(this).create();
-            alertDialog.setTitle("Llamada rápida");
-            alertDialog.setMessage("Taxi Centro");
-            alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "Llamar",
-                    new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                            Intent callIntent = new Intent(Intent.ACTION_DIAL);
-                            callIntent.setData(Uri.parse("tel:123456789"));
-                            startActivity(callIntent);
-                        }
-                    });
-            alertDialog.show();
-
-            return true;
-
-
-        }
-        return false;
     }
 }

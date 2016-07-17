@@ -20,5 +20,6 @@ public interface Keys {
         public static final String KEY_UBICATIONS = "ubications";
         public static final String KEY_LATITUDE = "latitude";
         public static final String KEY_LONGITUDE = "longitude";
+        public static final String KEY_PHONE = "phone";
     }
 }

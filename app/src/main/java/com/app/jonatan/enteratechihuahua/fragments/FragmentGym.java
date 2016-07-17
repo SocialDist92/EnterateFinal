@@ -42,6 +42,7 @@ public class FragmentGym extends Fragment implements SortListener, PromotionsLoa
     private RecyclerView mRecyclerPromotions;
     private TextView mTextError;
     private List<Subcategory> subcategories;
+    private AdapterSubcategory adapter;
 
     public FragmentGym() {
         // Required empty public constructor
@@ -92,7 +93,7 @@ public class FragmentGym extends Fragment implements SortListener, PromotionsLoa
         subcategories.add(new Subcategory(R.mipmap.ic_spinning, "Spinning"));
         subcategories.add(new Subcategory(R.mipmap.ic_pole, "Pole"));
 
-        AdapterSubcategory adapter = new AdapterSubcategory(subcategories);
+        adapter = new AdapterSubcategory(subcategories);
 
         subcategoriesRv.setAdapter(adapter);
 
@@ -110,6 +111,8 @@ public class FragmentGym extends Fragment implements SortListener, PromotionsLoa
         }
 
         mAdapter.setPromotions(mListPromotions);
+        adapter.setPromotions(mListPromotions);
+        adapter.setAdapterPromotions(mAdapter);
 
 
         return layout;
@@ -174,6 +177,7 @@ public class FragmentGym extends Fragment implements SortListener, PromotionsLoa
 
         mListPromotions = promotionsEventos;
         mAdapter.setPromotions(promotionsEventos);
+        adapter.setPromotions(mListPromotions);
 
     }
 

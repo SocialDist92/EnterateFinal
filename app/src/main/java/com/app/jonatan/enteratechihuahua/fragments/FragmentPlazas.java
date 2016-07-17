@@ -122,7 +122,7 @@ public class FragmentPlazas extends Fragment implements PromotionsLoadedListener
         ArrayList<Promotion>  promotionsRestaurants = new ArrayList<>();
         for(Promotion promotion: listPromotions) {
             final String text = promotion.getPlace().getCategory();
-            if (text.contains("Antros")) {
+            if (text.contains("Plazas Comerciales")) {
                 promotionsRestaurants.add(promotion);
             }
         }

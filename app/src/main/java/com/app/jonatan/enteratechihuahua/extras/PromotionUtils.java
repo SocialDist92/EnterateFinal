@@ -5,6 +5,7 @@ import com.app.jonatan.enteratechihuahua.json.Endpoints;
 import com.app.jonatan.enteratechihuahua.json.Parser;
 import com.app.jonatan.enteratechihuahua.json.Requestor;
 import com.app.jonatan.enteratechihuahua.pojo.Promotion;
+import com.app.jonatan.enteratechihuahua.pojo.TaxiSite;
 
 import org.json.JSONObject;
 
@@ -19,5 +20,13 @@ public class PromotionUtils {
         ArrayList<Promotion> listPromotions = Parser.parsePromotionsJson(response);
 
         return listPromotions;
+    }
+
+    public static ArrayList<TaxiSite> loadTaxiSites(RequestQueue requestQueue) {
+        JSONObject response = Requestor.requestTaxiSitesJSON(requestQueue, Endpoints.getUrlTaxiSites());
+        ArrayList<TaxiSite> listTaxiSites = Parser.parseTaxiSitesJson(response);
+        System.out.println("entro a taxi"+listTaxiSites);
+
+        return listTaxiSites;
     }
 }

@@ -42,6 +42,7 @@ public class FragmentBeauty extends Fragment implements SortListener, Promotions
     private RecyclerView mRecyclerPromotions;
     private TextView mTextError;
     private List<Subcategory> subcategories;
+    private AdapterSubcategory adapter;
 
     public FragmentBeauty() {
         // Required empty public constructor
@@ -92,7 +93,7 @@ public class FragmentBeauty extends Fragment implements SortListener, Promotions
         subcategories.add(new Subcategory(R.mipmap.ic_nails, "Uñas"));
         subcategories.add(new Subcategory(R.mipmap.ic_makeup, "Maquillaje"));
 
-        AdapterSubcategory adapter = new AdapterSubcategory(subcategories);
+        adapter = new AdapterSubcategory(subcategories);
 
         subcategoriesRv.setAdapter(adapter);
 
@@ -110,6 +111,8 @@ public class FragmentBeauty extends Fragment implements SortListener, Promotions
         }
 
         mAdapter.setPromotions(mListPromotions);
+        adapter.setPromotions(mListPromotions);
+        adapter.setAdapterPromotions(mAdapter);
 
 
         return layout;
@@ -167,13 +170,14 @@ public class FragmentBeauty extends Fragment implements SortListener, Promotions
         ArrayList<Promotion> promotionsEventos = new ArrayList<>();
         for (Promotion promotion : listPromotions) {
             final String text = promotion.getPlace().getCategory();
-            if (text.contains("Eventos")) {
+            if (text.contains("Belleza")) {
                 promotionsEventos.add(promotion);
             }
         }
 
         mListPromotions = promotionsEventos;
         mAdapter.setPromotions(promotionsEventos);
+        adapter.setPromotions(mListPromotions);
 
     }
 

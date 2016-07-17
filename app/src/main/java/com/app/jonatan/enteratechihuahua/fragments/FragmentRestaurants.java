@@ -52,6 +52,7 @@ public class FragmentRestaurants extends Fragment implements PromotionsLoadedLis
     private RecyclerView mRecyclerPromotions;
     private TextView mTextError;
     private List<Subcategory> subcategories;
+    private AdapterSubcategory adapter;
 
     public FragmentRestaurants() {
         // Required empty public constructor
@@ -118,7 +119,7 @@ public class FragmentRestaurants extends Fragment implements PromotionsLoadedLis
         subcategories.add(new Subcategory(R.mipmap.ic_sea, "Mariscos"));
         subcategories.add(new Subcategory(R.mipmap.ic_nutritional, "Nutritiva"));
 
-        AdapterSubcategory adapter = new AdapterSubcategory(subcategories);
+       adapter = new AdapterSubcategory(subcategories);
 
         subcategoriesRv.setAdapter(adapter);
 
@@ -136,6 +137,8 @@ public class FragmentRestaurants extends Fragment implements PromotionsLoadedLis
         }
 
         mAdapter.setPromotions(mListPromotions);
+        adapter.setPromotions(mListPromotions);
+        adapter.setAdapterPromotions(mAdapter);
 
         return layout;
     }
@@ -164,6 +167,7 @@ public class FragmentRestaurants extends Fragment implements PromotionsLoadedLis
         }
         mListPromotions = promotionsRestaurants;
         mAdapter.setPromotions(promotionsRestaurants);
+        adapter.setPromotions(mListPromotions);
     }
 
     @Override

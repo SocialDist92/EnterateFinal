@@ -36,4 +36,27 @@ public class Requestor {
         }
         return response;
     }
+
+    public static JSONObject requestTaxiSitesJSON(RequestQueue requestQueue, String url) {
+        JSONObject response = null;
+
+        RequestFuture<JSONObject> requestFuture = RequestFuture.newFuture();
+
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET,
+                url,
+                (String)null, requestFuture, requestFuture);
+
+        requestQueue.add(request);
+        try {
+            response = requestFuture.get(40000, TimeUnit.MILLISECONDS);
+        } catch (InterruptedException e) {
+            L.m(e + "");
+        } catch (ExecutionException e) {
+            L.m(e + "");
+        } catch (TimeoutException e) {
+            L.m(e + "");
+        }
+
+        return response;
+    }
 }

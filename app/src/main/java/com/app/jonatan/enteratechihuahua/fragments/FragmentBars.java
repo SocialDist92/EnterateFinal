@@ -42,6 +42,7 @@ public class FragmentBars extends Fragment implements SortListener, PromotionsLo
     private RecyclerView mRecyclerPromotions;
     private TextView mTextError;
     private List<Subcategory> subcategories;
+    private AdapterSubcategory adapter;
 
     public FragmentBars() {
         // Required empty public constructor
@@ -87,14 +88,14 @@ public class FragmentBars extends Fragment implements SortListener, PromotionsLo
 
         subcategories = new ArrayList<>();
 
-        subcategories.add(new Subcategory(R.mipmap.ic_sport, "SportBar"));
-        subcategories.add(new Subcategory(R.mipmap.ic_contemporary, "Contempo"));
-        subcategories.add(new Subcategory(R.mipmap.ic_musical, "Musical"));
+        subcategories.add(new Subcategory(R.mipmap.ic_sport, "Sport Bar"));
+        subcategories.add(new Subcategory(R.mipmap.ic_contemporary, "Cantina Contemporanea"));
+        subcategories.add(new Subcategory(R.mipmap.ic_musical, "Genero Musical"));
         subcategories.add(new Subcategory(R.mipmap.ic_cantina, "Cantinas"));
-        subcategories.add(new Subcategory(R.mipmap.ic_drive, "DriveInn"));
+        subcategories.add(new Subcategory(R.mipmap.ic_drive, "Drive Inn"));
 
 
-        AdapterSubcategory adapter = new AdapterSubcategory(subcategories);
+        adapter = new AdapterSubcategory(subcategories);
 
         subcategoriesRv.setAdapter(adapter);
 
@@ -112,7 +113,8 @@ public class FragmentBars extends Fragment implements SortListener, PromotionsLo
         }
 
         mAdapter.setPromotions(mListPromotions);
-
+        adapter.setPromotions(mListPromotions);
+        adapter.setAdapterPromotions(mAdapter);
 
         return layout;
     }
@@ -176,6 +178,7 @@ public class FragmentBars extends Fragment implements SortListener, PromotionsLo
 
         mListPromotions = promotionsEventos;
         mAdapter.setPromotions(promotionsEventos);
+        adapter.setPromotions(mListPromotions);
 
     }
 

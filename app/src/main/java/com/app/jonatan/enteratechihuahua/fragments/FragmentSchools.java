@@ -41,6 +41,7 @@ public class FragmentSchools extends Fragment implements PromotionsLoadedListene
     private RecyclerView mRecyclerPromotions;
     private TextView mTextError;
     private List<Subcategory> subcategories;
+    private AdapterSubcategory adapter;
 
     public FragmentSchools() {
         // Required empty public constructor
@@ -95,7 +96,7 @@ public class FragmentSchools extends Fragment implements PromotionsLoadedListene
         subcategories.add(new Subcategory(R.mipmap.ic_other, "Otras"));
 
 
-        AdapterSubcategory adapter = new AdapterSubcategory(subcategories);
+        adapter = new AdapterSubcategory(subcategories);
 
         subcategoriesRv.setAdapter(adapter);
 
@@ -113,6 +114,8 @@ public class FragmentSchools extends Fragment implements PromotionsLoadedListene
         }
 
         mAdapter.setPromotions(mListPromotions);
+        adapter.setPromotions(mListPromotions);
+        adapter.setAdapterPromotions(mAdapter);
         return layout;
     }
 
@@ -154,12 +157,13 @@ public class FragmentSchools extends Fragment implements PromotionsLoadedListene
         ArrayList<Promotion>  promotionsGovernment = new ArrayList<>();
         for(Promotion promotion: listPromotions) {
             final String text = promotion.getPlace().getCategory();
-            if (text.contains("Gubernamentales")) {
+            if (text.contains("Escuelas")) {
                 promotionsGovernment.add(promotion);
             }
         }
         mListPromotions = promotionsGovernment;
         mAdapter.setPromotions(promotionsGovernment);
+        adapter.setPromotions(mListPromotions);
     }
 
     @Override
