@@ -65,7 +65,11 @@ public class FragmentNavigationDrawer extends Fragment {
     public List<Information> getData() {
         //load only static data inside a drawer
         List<Information> data = new ArrayList<>();
-        int[] icons = {R.drawable.ic_action_event_black, R.drawable.ic_action_restaurant_black, R.drawable.ic_action_government_black};
+        int[] icons = {R.mipmap.ic_food, R.mipmap.ic_bars,
+                R.mipmap.ic_clubs, R.mipmap.ic_coffee, R.mipmap.ic_plaza,
+                R.mipmap.ic_events, R.mipmap.ic_beauty,
+                R.mipmap.ic_pets, R.mipmap.ic_gym,
+                R.mipmap.ic_government, R.mipmap.ic_schools};
         String[] titles = getResources().getStringArray(R.array.drawer_tabs);
         for (int i = 0; i < titles.length; i++) {
             Information information = new Information();

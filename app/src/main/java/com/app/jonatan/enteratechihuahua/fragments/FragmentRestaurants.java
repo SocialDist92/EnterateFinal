@@ -13,7 +13,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.support.v7.widget.SearchView;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.NetworkError;
@@ -23,7 +25,9 @@ import com.android.volley.ServerError;
 import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
 import com.app.jonatan.enteratechihuahua.adapters.AdapterPromotion;
+import com.app.jonatan.enteratechihuahua.adapters.AdapterSubcategory;
 import com.app.jonatan.enteratechihuahua.callbacks.PromotionsLoadedListener;
+import com.app.jonatan.enteratechihuahua.extras.Subcategory;
 import com.app.jonatan.enteratechihuahua.logging.L;
 import com.app.jonatan.enteratechihuahua.pojo.Promotion;
 import com.app.jonatan.enteratechihuahua.tasks.TaskLoadPromotions;
@@ -47,6 +51,8 @@ public class FragmentRestaurants extends Fragment implements PromotionsLoadedLis
     private SwipeRefreshLayout mSwipeRefreshLayout;
     private RecyclerView mRecyclerPromotions;
     private TextView mTextError;
+    private List<Subcategory> subcategories;
+    private AdapterSubcategory adapter;
 
     public FragmentRestaurants() {
         // Required empty public constructor
@@ -85,6 +91,38 @@ public class FragmentRestaurants extends Fragment implements PromotionsLoadedLis
         mAdapter = new AdapterPromotion(getActivity());
         mRecyclerPromotions.setAdapter(mAdapter);
 
+        RecyclerView subcategoriesRv = (RecyclerView)layout.findViewById(R.id.subcategorybarsrecycler);
+        LinearLayoutManager llm =
+                new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
+
+        subcategoriesRv.setLayoutManager(llm);
+
+        subcategories = new ArrayList<>();
+
+        subcategories.add(new Subcategory(R.mipmap.ic_tacos, "Tacos"));
+        subcategories.add(new Subcategory(R.mipmap.ic_oriental, "Oriental"));
+        subcategories.add(new Subcategory(R.mipmap.ic_italian, "Italiana"));
+        subcategories.add(new Subcategory(R.mipmap.ic_mexican, "Mexicana"));
+        subcategories.add(new Subcategory(R.mipmap.ic_expensivefood, "Alta Cocina"));
+        subcategories.add(new Subcategory(R.mipmap.ic_steak, "Cortes"));
+        subcategories.add(new Subcategory(R.mipmap.ic_hamburguer, "Hamburguesas"));
+        subcategories.add(new Subcategory(R.mipmap.ic_togo, "Para Llevar"));
+        subcategories.add(new Subcategory(R.mipmap.ic_american, "Americana"));
+        subcategories.add(new Subcategory(R.mipmap.ic_express, "Rápida"));
+        subcategories.add(new Subcategory(R.mipmap.ic_icecream, "Nieves"));
+        subcategories.add(new Subcategory(R.mipmap.ic_family, "Familiar"));
+        subcategories.add(new Subcategory(R.mipmap.ic_economic, "Económica"));
+        subcategories.add(new Subcategory(R.mipmap.ic_breakfast, "Desayunos"));
+        subcategories.add(new Subcategory(R.mipmap.ic_wings, "Alitas"));
+        subcategories.add(new Subcategory(R.mipmap.ic_china, "China"));
+        subcategories.add(new Subcategory(R.mipmap.ic_salads, "Ensaladas"));
+        subcategories.add(new Subcategory(R.mipmap.ic_sea, "Mariscos"));
+        subcategories.add(new Subcategory(R.mipmap.ic_nutritional, "Nutritiva"));
+
+       adapter = new AdapterSubcategory(subcategories);
+
+        subcategoriesRv.setAdapter(adapter);
+
         setHasOptionsMenu(true);
 
         if (savedInstanceState != null) {
@@ -99,6 +137,9 @@ public class FragmentRestaurants extends Fragment implements PromotionsLoadedLis
         }
 
         mAdapter.setPromotions(mListPromotions);
+        adapter.setPromotions(mListPromotions);
+        adapter.setAdapterPromotions(mAdapter);
+
         return layout;
     }
 
@@ -120,12 +161,13 @@ public class FragmentRestaurants extends Fragment implements PromotionsLoadedLis
         ArrayList<Promotion>  promotionsRestaurants = new ArrayList<>();
         for(Promotion promotion: listPromotions) {
             final String text = promotion.getPlace().getCategory();
-            if (text.contains("Restaurantes")) {
+            if (text.contains("Comida")) {
                 promotionsRestaurants.add(promotion);
             }
         }
         mListPromotions = promotionsRestaurants;
         mAdapter.setPromotions(promotionsRestaurants);
+        adapter.setPromotions(mListPromotions);
     }
 
     @Override

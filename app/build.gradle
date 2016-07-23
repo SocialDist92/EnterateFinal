@@ -6,10 +6,10 @@ android {
 
     defaultConfig {
         applicationId "com.app.jonatan.enteratechihuahua"
-        minSdkVersion 19
+        minSdkVersion 16
         targetSdkVersion 23
-        versionCode 1
-        versionName "1.0"
+        versionCode 2
+        versionName "2.0"
         // Enabling multidex support.
         multiDexEnabled true
     }
@@ -30,6 +30,7 @@ dependencies {
     compile 'com.android.support:appcompat-v7:23.1.1'
     compile 'com.android.support:design:23.1.1'
     compile 'com.android.support:recyclerview-v7:23.1.1'
+    compile 'com.android.support:cardview-v7:23.0.+'
     compile 'org.lucasr.dspec:dspec:0.1.1'
     compile 'it.neokree:MaterialTabs:0.11'
     compile 'com.mcxiaoke.volley:library:1.0.+'
@@ -47,5 +48,6 @@ dependencies {
     compile 'com.github.paolorotolo:appintro:4.0.0'
     compile 'com.android.support:multidex:1.0.0'
 }
+
 
 

@@ -16,7 +16,9 @@ import android.support.v7.widget.SearchView;
 import android.widget.TextView;
 
 import com.app.jonatan.enteratechihuahua.adapters.AdapterPromotion;
+import com.app.jonatan.enteratechihuahua.adapters.AdapterSubcategory;
 import com.app.jonatan.enteratechihuahua.callbacks.PromotionsLoadedListener;
+import com.app.jonatan.enteratechihuahua.extras.Subcategory;
 import com.app.jonatan.enteratechihuahua.logging.L;
 import com.app.jonatan.enteratechihuahua.pojo.Promotion;
 import com.app.jonatan.enteratechihuahua.tasks.TaskLoadPromotions;
@@ -41,6 +43,8 @@ public class FragmentGovernment extends Fragment implements PromotionsLoadedList
     private SwipeRefreshLayout mSwipeRefreshLayout;
     private RecyclerView mRecyclerPromotions;
     private TextView mTextError;
+    private List<Subcategory> subcategories;
+    private AdapterSubcategory adapter;
 
     public FragmentGovernment() {
         // Required empty public constructor
@@ -67,7 +71,7 @@ public class FragmentGovernment extends Fragment implements PromotionsLoadedList
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View layout = inflater.inflate(R.layout.fragment_restaurants, container, false);
+        View layout = inflater.inflate(R.layout.fragment_government, container, false);
         mTextError = (TextView) layout.findViewById(R.id.textVolleyError);
 
         mSwipeRefreshLayout = (SwipeRefreshLayout) layout.findViewById(R.id.swipePromotions);
@@ -78,6 +82,27 @@ public class FragmentGovernment extends Fragment implements PromotionsLoadedList
 
         mAdapter = new AdapterPromotion(getActivity());
         mRecyclerPromotions.setAdapter(mAdapter);
+
+        RecyclerView subcategoriesRv = (RecyclerView) layout.findViewById(R.id.subcategoryrecycler);
+        LinearLayoutManager llm =
+                new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
+
+        subcategoriesRv.setLayoutManager(llm);
+
+        subcategories = new ArrayList<>();
+
+        subcategories.add(new Subcategory(R.mipmap.ic_urbanclean, "Aseo Urbano"));
+        subcategories.add(new Subcategory(R.mipmap.ic_jmas, "JMAS"));
+        subcategories.add(new Subcategory(R.mipmap.ic_security, "Seguridad Pública"));
+        subcategories.add(new Subcategory(R.mipmap.ic_predial, "Predial"));
+        subcategories.add(new Subcategory(R.mipmap.ic_rental, "Recaudación de Rentas"));
+        subcategories.add(new Subcategory(R.mipmap.ic_congress, "Congreso del Estado"));
+        subcategories.add(new Subcategory(R.mipmap.ic_state, "Servicios Estatales"));
+        subcategories.add(new Subcategory(R.mipmap.ic_coesvi, "COESVI"));
+
+        adapter = new AdapterSubcategory(subcategories);
+
+        subcategoriesRv.setAdapter(adapter);
 
         setHasOptionsMenu(true);
 
@@ -93,6 +118,8 @@ public class FragmentGovernment extends Fragment implements PromotionsLoadedList
         }
 
         mAdapter.setPromotions(mListPromotions);
+        adapter.setPromotions(mListPromotions);
+        adapter.setAdapterPromotions(mAdapter);
         return layout;
     }
 
@@ -140,6 +167,7 @@ public class FragmentGovernment extends Fragment implements PromotionsLoadedList
         }
         mListPromotions = promotionsGovernment;
         mAdapter.setPromotions(promotionsGovernment);
+        adapter.setPromotions(mListPromotions);
     }
 
     @Override

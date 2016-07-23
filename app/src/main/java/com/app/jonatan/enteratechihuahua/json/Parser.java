@@ -3,6 +3,7 @@ package com.app.jonatan.enteratechihuahua.json;
 import com.app.jonatan.enteratechihuahua.extras.Constants;
 import com.app.jonatan.enteratechihuahua.pojo.Place;
 import com.app.jonatan.enteratechihuahua.pojo.Promotion;
+import com.app.jonatan.enteratechihuahua.pojo.TaxiSite;
 import com.app.jonatan.enteratechihuahua.pojo.Ubication;
 
 import org.json.JSONArray;
@@ -18,7 +19,9 @@ import static com.app.jonatan.enteratechihuahua.extras.Keys.EndpointPlacePromoti
 import static com.app.jonatan.enteratechihuahua.extras.Keys.EndpointPlacePromotion.KEY_LATITUDE;
 import static com.app.jonatan.enteratechihuahua.extras.Keys.EndpointPlacePromotion.KEY_LONGITUDE;
 import static com.app.jonatan.enteratechihuahua.extras.Keys.EndpointPlacePromotion.KEY_NAME;
+import static com.app.jonatan.enteratechihuahua.extras.Keys.EndpointPlacePromotion.KEY_PHONE;
 import static com.app.jonatan.enteratechihuahua.extras.Keys.EndpointPlacePromotion.KEY_PLACE;
+import static com.app.jonatan.enteratechihuahua.extras.Keys.EndpointPlacePromotion.KEY_SUB;
 import static com.app.jonatan.enteratechihuahua.extras.Keys.EndpointPlacePromotion.KEY_UBICATIONS;
 import static com.app.jonatan.enteratechihuahua.extras.Keys.EndpointPlacePromotion.KEY_URL_IMAGE_LOGO;
 
@@ -38,6 +41,7 @@ public class Parser {
                     String id = Constants.NA;
                     String placeName = Constants.NA;
                     String placeCategory = Constants.NA;
+                    String placeSubCategory = Constants.NA;
                     String placeUrlImageLogo = Constants.NA;
                     String placeId = Constants.NA;
                     ArrayList<Ubication> ubications = new ArrayList<>();
@@ -65,6 +69,10 @@ public class Parser {
 
                         if (Utils.contains(objectPlace, KEY_CATEGORY)) {
                             placeCategory = objectPlace.getString(KEY_CATEGORY);
+                        }
+
+                        if (Utils.contains(objectPlace, KEY_SUB)) {
+                            placeSubCategory = objectPlace.getString(KEY_SUB);
                         }
 
                         if (Utils.contains(objectPlace, KEY_URL_IMAGE_LOGO)) {
@@ -106,6 +114,7 @@ public class Parser {
                     Promotion promotion = new Promotion();
 
                     place.setCategory(placeCategory);
+                    place.setSubCategory(placeSubCategory);
                     place.setUrlImageLogo(placeUrlImageLogo);
                     place.setName(placeName);
                     place.setIdAsStr(placeId);
@@ -125,5 +134,52 @@ public class Parser {
         }
 
         return listPromotions;
+    }
+
+    public static ArrayList<TaxiSite> parseTaxiSitesJson(JSONObject response) {
+        ArrayList<TaxiSite> taxiSites = new ArrayList<>();
+
+        if (response != null && response.length() > 0) {
+            try {
+                JSONArray arrayTaxiSites = response.getJSONArray(KEY_ITEMS);
+
+                for (int i = 0; i < arrayTaxiSites.length(); i++) {
+                    String name = Constants.NA;
+                    String latitude = Constants.NA;
+                    String longitude = Constants.NA;
+                    String phone = Constants.NA;
+
+                    JSONObject currentTaxiSite = arrayTaxiSites.getJSONObject(i);
+
+                    if (Utils.contains(currentTaxiSite, KEY_NAME)) {
+                        name = currentTaxiSite.getString(KEY_NAME);
+                    }
+
+                    if (Utils.contains(currentTaxiSite, KEY_LATITUDE)) {
+                        latitude = currentTaxiSite.getString(KEY_LATITUDE);
+                    }
+
+                    if (Utils.contains(currentTaxiSite, KEY_LONGITUDE)) {
+                        longitude = currentTaxiSite.getString(KEY_LONGITUDE);
+                    }
+
+                    if (Utils.contains(currentTaxiSite, KEY_PHONE)) {
+                        phone = currentTaxiSite.getString(KEY_PHONE);
+                    }
+
+                    TaxiSite taxiSite = new TaxiSite();
+                    taxiSite.setName(name);
+                    taxiSite.setLongitude(longitude);
+                    taxiSite.setLatitude(latitude);
+                    taxiSite.setPhone(phone);
+                    taxiSites.add(taxiSite);
+                }
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return taxiSites;
     }
 }

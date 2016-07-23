@@ -1,5 +1,6 @@
 package com.app.jonatan.enteratechihuahua.activities;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
@@ -8,10 +9,24 @@ import android.os.Bundle;
 
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageLoader;
+import com.app.jonatan.enteratechihuahua.adapters.AdapterSubcategory;
+import com.app.jonatan.enteratechihuahua.callbacks.TaxiSitesLoadedListener;
 import com.app.jonatan.enteratechihuahua.extras.Constants;
 import com.app.jonatan.enteratechihuahua.extras.SortListener;
+import com.app.jonatan.enteratechihuahua.extras.Subcategory;
+import com.app.jonatan.enteratechihuahua.fragments.FragmentBars;
+import com.app.jonatan.enteratechihuahua.fragments.FragmentBeauty;
+import com.app.jonatan.enteratechihuahua.fragments.FragmentClubs;
+import com.app.jonatan.enteratechihuahua.fragments.FragmentCoffee;
 import com.app.jonatan.enteratechihuahua.fragments.FragmentEvents;
+import com.app.jonatan.enteratechihuahua.fragments.FragmentGym;
+import com.app.jonatan.enteratechihuahua.fragments.FragmentPets;
+import com.app.jonatan.enteratechihuahua.fragments.FragmentPlazas;
+import com.app.jonatan.enteratechihuahua.fragments.FragmentSchools;
+import com.app.jonatan.enteratechihuahua.logging.L;
 import com.app.jonatan.enteratechihuahua.network.VolleySingleton;
+import com.app.jonatan.enteratechihuahua.pojo.TaxiSite;
+import com.app.jonatan.enteratechihuahua.tasks.TaskLoadTaxiSites;
 import com.app.jonatan.enteratechihuahua.test.R;
 import com.daimajia.androidanimations.library.sliders.SlideOutDownAnimator;
 import com.github.paolorotolo.appintro.AppIntro;
@@ -25,6 +40,8 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
@@ -40,21 +57,40 @@ import com.app.jonatan.enteratechihuahua.fragments.FragmentRestaurants;
 import com.oguzdev.circularfloatingactionmenu.library.FloatingActionMenu;
 import com.oguzdev.circularfloatingactionmenu.library.SubActionButton;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import it.neokree.materialtabs.MaterialTab;
 import it.neokree.materialtabs.MaterialTabHost;
 import it.neokree.materialtabs.MaterialTabListener;
 import me.tatarka.support.job.JobScheduler;
 
-public class ActivityMain extends ActionBarActivity implements MaterialTabListener, View.OnClickListener {
+public class ActivityMain extends ActionBarActivity implements MaterialTabListener, View.OnClickListener, TaxiSitesLoadedListener {
     public boolean isFirstStart;
     //int representing our 0th tab corresponding to the Fragment where search results are dispalyed
-    public static final int TAB_SEARCH_RESULTS = 0;
+    public static final int TAB_COMIDA = 0;
     //int corresponding to our 1st tab corresponding to the Fragment where box office hits are dispalyed
-    public static final int TAB_HITS = 1;
+    public static final int  TAB_BARES= 1;
     //int corresponding to our 2nd tab corresponding to the Fragment where upcoming movies are displayed
-    public static final int TAB_UPCOMING = 2;
+    public static final int  TAB_ANTROS= 2;
     //int corresponding to the number of tabs in our Activity
-    public static final int TAB_COUNT = 3;
+    public static final int TAB_CAFES = 3;
+
+    public static final int TAB_PLAZAS = 4;
+
+    public static final int TAB_EVENTOS = 5;
+
+    public static final int TAB_BELLEZA = 6;
+
+    public static final int TAB_MASCOTAS = 7;
+
+    public static final int TAB_GIMNASIOS = 8;
+
+    public static final int TAB_GUBERNAMENTALES = 9;
+
+    public static final int TAB_ESCUELAS = 10;
+
+    public static final int TAB_COUNT = 11;
     //int corresponding to the id of our JobSchedulerService
     private static final int JOB_ID = 100;
     //tag associated with the FAB menu button that sorts by name
@@ -78,6 +114,8 @@ public class ActivityMain extends ActionBarActivity implements MaterialTabListen
     private ImageView mLogo;
     public String url;
     public String name;
+    private ArrayList<TaxiSite> taxiSites  = new ArrayList<>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,10 +127,12 @@ public class ActivityMain extends ActionBarActivity implements MaterialTabListen
         mLogo = (ImageView) findViewById(R.id.custom_title);
         mLogo.setImageResource(R.drawable.enterate);
 
+        new TaskLoadTaxiSites(this).execute();
+
         Window window = this.getWindow();
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-        window.setStatusBarColor(this.getResources().getColor(R.color.black));
+        //window.setStatusBarColor(this.getResources().getColor(R.color.black));
 
         //  Declare a new thread to do a preference check
         Thread t = new Thread(new Runnable() {
@@ -142,7 +182,7 @@ public class ActivityMain extends ActionBarActivity implements MaterialTabListen
         mDrawerFragment = (FragmentNavigationDrawer)
                 getSupportFragmentManager().findFragmentById(R.id.fragment_navigation_drawer);
         mDrawerFragment.setUp(R.id.fragment_navigation_drawer, (DrawerLayout) findViewById
-                (R.id.drawer_layout), mToolbar,getIntent().getExtras().getString("url"),
+                        (R.id.drawer_layout), mToolbar,getIntent().getExtras().getString("url"),
                 getIntent().getExtras().getString("name"));
         String shit;
         shit = getIntent().getExtras().getString("url");
@@ -174,17 +214,27 @@ public class ActivityMain extends ActionBarActivity implements MaterialTabListen
     }
 
     private void setupFAB() {
-        /*//define the icon for the main floating action button
+        //define the icon for the main floating action button
         ImageView iconFAB = new ImageView(this);
-        iconFAB.setImageResource(R.drawable.ic_action_new);
+        iconFAB.setImageResource(R.drawable.ic_taxi_light);
 
         //set the appropriate background for the main floating action button along with its icon
         mFAB = new com.oguzdev.circularfloatingactionmenu.library.FloatingActionButton.Builder(this)
                 .setContentView(iconFAB)
                 .setBackgroundDrawable(R.drawable.selector_button_red)
                 .build();
+        mFAB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Context context = v.getContext();
+                Intent intent = new Intent(context, TaxiMapsActivity.class);
+                intent.putParcelableArrayListExtra("taxis", taxiSites);
+                //intent.putExtra("promotion", currentPromotion);
+                context.startActivity(intent);
+            }
+        });
 
-        //define the icons for the sub action buttons
+        /*//define the icons for the sub action buttons
         ImageView iconSortName = new ImageView(this);
         iconSortName.setImageResource(R.drawable.ic_action_alphabets);
         ImageView iconSortDate = new ImageView(this);
@@ -218,6 +268,7 @@ public class ActivityMain extends ActionBarActivity implements MaterialTabListen
                 .addSubActionView(buttonSortRatings)
                 .attachTo(mFAB)
                 .build();*/
+
     }
 
     @Override
@@ -293,14 +344,26 @@ public class ActivityMain extends ActionBarActivity implements MaterialTabListen
             }
             mFAB.setTranslationX(slideOffset * 200);
         }
+        mFAB.setTranslationX(slideOffset * 200);
+    }
+
+    @Override
+    public void onTaxiSitesLoaded(ArrayList<TaxiSite> listTaxiSites) {
+        L.m("TaxiMapsActivity: onTaxiSiteLoaded");
+        taxiSites = listTaxiSites;
+        System.out.println("taxis cargados"+taxiSites);
     }
 
 
     private class ViewPagerAdapter extends FragmentStatePagerAdapter {
 
-        int icons[] = {R.drawable.ic_action_event,
-                R.drawable.ic_action_restaurant,
-                R.drawable.ic_action_government};
+        int icons[] = {R.mipmap.ic_food, R.mipmap.ic_bars,
+                R.mipmap.ic_clubs, R.mipmap.ic_coffee,
+                R.mipmap.ic_plaza, R.mipmap.ic_events,
+                R.mipmap.ic_beauty, R.mipmap.ic_pets,
+                R.mipmap.ic_gym, R.mipmap.ic_government,
+                R.mipmap.ic_schools
+        };
 
         FragmentManager fragmentManager;
 
@@ -313,14 +376,38 @@ public class ActivityMain extends ActionBarActivity implements MaterialTabListen
             Fragment fragment = null;
 //            L.m("getItem called for " + num);
             switch (num) {
-                case TAB_SEARCH_RESULTS:
-                    fragment = FragmentEvents.newInstance("", "");
-                    break;
-                case TAB_HITS:
+                case TAB_COMIDA:
                     fragment = FragmentRestaurants.newInstance("", "");
                     break;
-                case TAB_UPCOMING:
+                case TAB_BARES:
+                    fragment = FragmentBars.newInstance("", "");
+                    break;
+                case TAB_ANTROS:
+                    fragment = FragmentClubs.newInstance("", "");
+                    break;
+                case TAB_CAFES:
+                    fragment = FragmentCoffee.newInstance("", "");
+                    break;
+                case TAB_PLAZAS:
+                    fragment = FragmentPlazas.newInstance("", "");
+                    break;
+                case TAB_EVENTOS:
+                    fragment = FragmentEvents.newInstance("", "");
+                    break;
+                case TAB_BELLEZA:
+                    fragment = FragmentBeauty.newInstance("", "");
+                    break;
+                case TAB_MASCOTAS:
+                    fragment = FragmentPets.newInstance("", "");
+                    break;
+                case TAB_GIMNASIOS:
+                    fragment = FragmentGym.newInstance("", "");
+                    break;
+                case TAB_GUBERNAMENTALES:
                     fragment = FragmentGovernment.newInstance("", "");
+                    break;
+                case TAB_ESCUELAS:
+                    fragment = FragmentSchools.newInstance("", "");
                     break;
             }
             return fragment;
