@@ -1,4 +1,4 @@
-package com.app.jonatan.enteratechihuahua;
+package com.app.enterate.enteratechihuahua;
 
 import org.junit.Test;
 

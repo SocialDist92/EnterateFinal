@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@android:color/white"
-    tools:context="com.app.jonatan.enteratechihuahua.fragments.FragmentNavigationDrawer">
+    tools:context="com.app.enterate.enteratechihuahua.fragments.FragmentNavigationDrawer">
     <FrameLayout
         android:id="@+id/frame"
         android:layout_width="match_parent"

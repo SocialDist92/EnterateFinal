@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.app.jonatan.enteratechihuahua.test" >
+    package="com.app.enterate.enteratechihuahua.test" >
 
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -32,7 +32,7 @@
          location permissions for the 'MyLocation' functionality. 
     -->
     <application
-        android:name=".MyApplication"
+        android:name="com.app.enterate.enteratechihuahua.test.MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_enterate"
         android:label="@string/app_name"
@@ -43,7 +43,7 @@
             android:value="@string/facebook_app_id" />
 
         <activity
-            android:name="com.app.jonatan.enteratechihuahua.activities.ActivityMain"
+            android:name="com.app.enterate.enteratechihuahua.activities.ActivityMain"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar" />
         <!--
@@ -59,13 +59,13 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name="com.app.jonatan.enteratechihuahua.activities.PromotionDetail"
+            android:name="com.app.enterate.enteratechihuahua.activities.PromotionDetail"
             android:label="@string/title_activity_promotion_detail" />
         <activity
             android:name="com.facebook.LoginActivity"
             android:label="@string/app_name" />
         <activity
-            android:name="com.app.jonatan.enteratechihuahua.activities.LoginActivity"
+            android:name="com.app.enterate.enteratechihuahua.activities.LoginActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme" >
             <intent-filter>
@@ -74,9 +74,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.app.jonatan.enteratechihuahua.activities.Intro" />
+        <activity android:name="com.app.enterate.enteratechihuahua.activities.Intro" />
         <activity
-            android:name="com.app.jonatan.enteratechihuahua.activities.TaxiMapsActivity"
+            android:name="com.app.enterate.enteratechihuahua.activities.TaxiMapsActivity"
             android:label="@string/title_activity_taxi_maps" >
         </activity>
     </application>
