@@ -14,6 +14,8 @@ public class Place implements Parcelable {
     private String idAsStr;
     private String name;
     private String urlFacebook;
+    private String urlPinterest;
+    private String urlInstagram;
     private String urlImageLogo;
     private String urlLocation;
     private String urlTwitter;
@@ -36,12 +38,15 @@ public class Place implements Parcelable {
         this.ubications = new ArrayList<>();
     }
 
+
     protected Place(Parcel in) {
         category = in.readString();
         subCategory = in.readString();
         idAsStr = in.readString();
         name = in.readString();
         urlFacebook = in.readString();
+        urlPinterest = in.readString();
+        urlInstagram = in.readString();
         urlImageLogo = in.readString();
         urlLocation = in.readString();
         urlTwitter = in.readString();
@@ -59,24 +64,6 @@ public class Place implements Parcelable {
             return new Place[size];
         }
     };
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(category);
-        dest.writeString(subCategory);
-        dest.writeString(idAsStr);
-        dest.writeString(name);
-        dest.writeString(urlFacebook);
-        dest.writeString(urlImageLogo);
-        dest.writeString(urlLocation);
-        dest.writeString(urlTwitter);
-        dest.writeTypedList(ubications);
-    }
 
     public String getCategory() {
         return category;
@@ -150,7 +137,39 @@ public class Place implements Parcelable {
         this.ubications = ubications;
     }
 
-    public static Creator<Place> getCREATOR() {
-        return CREATOR;
+    public String getUrlPinterest() {
+        return urlPinterest;
+    }
+
+    public void setUrlPinterest(String urlPinterest) {
+        this.urlPinterest = urlPinterest;
+    }
+
+    public String getUrlInstagram() {
+        return urlInstagram;
+    }
+
+    public void setUrlInstagram(String urlInstagram) {
+        this.urlInstagram = urlInstagram;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(category);
+        dest.writeString(subCategory);
+        dest.writeString(idAsStr);
+        dest.writeString(name);
+        dest.writeString(urlFacebook);
+        dest.writeString(urlPinterest);
+        dest.writeString(urlInstagram);
+        dest.writeString(urlImageLogo);
+        dest.writeString(urlLocation);
+        dest.writeString(urlTwitter);
+        dest.writeTypedList(ubications);
     }
 }

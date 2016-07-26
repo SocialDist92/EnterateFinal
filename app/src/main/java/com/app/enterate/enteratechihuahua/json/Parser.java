@@ -23,7 +23,11 @@ import static com.app.enterate.enteratechihuahua.extras.Keys.EndpointPlacePromot
 import static com.app.enterate.enteratechihuahua.extras.Keys.EndpointPlacePromotion.KEY_PLACE;
 import static com.app.enterate.enteratechihuahua.extras.Keys.EndpointPlacePromotion.KEY_SUB;
 import static com.app.enterate.enteratechihuahua.extras.Keys.EndpointPlacePromotion.KEY_UBICATIONS;
+import static com.app.enterate.enteratechihuahua.extras.Keys.EndpointPlacePromotion.KEY_URL_FACEBOOK;
 import static com.app.enterate.enteratechihuahua.extras.Keys.EndpointPlacePromotion.KEY_URL_IMAGE_LOGO;
+import static com.app.enterate.enteratechihuahua.extras.Keys.EndpointPlacePromotion.KEY_URL_INSTAGRAM;
+import static com.app.enterate.enteratechihuahua.extras.Keys.EndpointPlacePromotion.KEY_URL_PINTEREST;
+import static com.app.enterate.enteratechihuahua.extras.Keys.EndpointPlacePromotion.KEY_URL_TWITTER;
 
 /**
  * Created by Jonatan on 11/05/2016.
@@ -43,6 +47,10 @@ public class Parser {
                     String placeCategory = Constants.NA;
                     String placeSubCategory = Constants.NA;
                     String placeUrlImageLogo = Constants.NA;
+                    String placeUrlFacebook = Constants.NA;
+                    String placeUrlTwitter = Constants.NA;
+                    String placeUrlPinterest = Constants.NA;
+                    String placeUrlInstagram = Constants.NA;
                     String placeId = Constants.NA;
                     ArrayList<Ubication> ubications = new ArrayList<>();
 
@@ -78,6 +86,22 @@ public class Parser {
                         if (Utils.contains(objectPlace, KEY_URL_IMAGE_LOGO)) {
                             placeUrlImageLogo = objectPlace.getString(KEY_URL_IMAGE_LOGO);
                             System.out.println(placeUrlImageLogo);
+                        }
+
+                        if (Utils.contains(objectPlace, KEY_URL_FACEBOOK)) {
+                            placeUrlFacebook = objectPlace.getString(KEY_URL_FACEBOOK);
+                        }
+
+                        if (Utils.contains(objectPlace, KEY_URL_TWITTER)) {
+                            placeUrlTwitter = objectPlace.getString(KEY_URL_TWITTER);
+                        }
+
+                        if (Utils.contains(objectPlace, KEY_URL_PINTEREST)) {
+                            placeUrlPinterest = objectPlace.getString(KEY_URL_PINTEREST);
+                        }
+
+                        if (Utils.contains(objectPlace, KEY_URL_INSTAGRAM)) {
+                            placeUrlInstagram = objectPlace.getString(KEY_URL_INSTAGRAM);
                         }
 
                         if (Utils.contains(objectPlace, KEY_ID)) {
@@ -116,6 +140,10 @@ public class Parser {
                     place.setCategory(placeCategory);
                     place.setSubCategory(placeSubCategory);
                     place.setUrlImageLogo(placeUrlImageLogo);
+                    place.setUrlFacebook(placeUrlFacebook);
+                    place.setUrlTwitter(placeUrlTwitter);
+                    place.setUrlInstagram(placeUrlInstagram);
+                    place.setUrlPinterest(placeUrlPinterest);
                     place.setName(placeName);
                     place.setIdAsStr(placeId);
                     place.setUbications(ubications);

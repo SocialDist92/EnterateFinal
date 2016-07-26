@@ -11,6 +11,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageLoader;
@@ -18,6 +19,7 @@ import com.app.enterate.enteratechihuahua.extras.Constants;
 import com.app.enterate.enteratechihuahua.network.VolleySingleton;
 import com.app.enterate.enteratechihuahua.pojo.Promotion;
 import com.app.enterate.enteratechihuahua.pojo.Ubication;
+import com.app.enterate.enteratechihuahua.test.MyApplication;
 import com.app.enterate.enteratechihuahua.test.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -76,36 +78,59 @@ public class PromotionDetail extends AppCompatActivity implements OnMapReadyCall
             @Override
             public void onClick(View v) {
 
-                Uri uri = Uri.parse("http://www.facebook.com"); // missing 'http://' will cause crashed
-                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                startActivity(intent);
+                if (mPromotion.getPlace().getUrlFacebook().length() != 0) {
+                    Uri uri = Uri.parse(mPromotion.getPlace().getUrlFacebook()); // missing 'http://' will cause crashed
+                    Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                    startActivity(intent);
+                } else {
+                    Toast toast = Toast.makeText(MyApplication.getAppContext(), "No hay Facebook registrado",  Toast.LENGTH_SHORT);
+                    toast.show();
+                }
             }
         });
 
         imgTwitter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Uri uri = Uri.parse("http://www.twitter.com"); // missing 'http://' will cause crashed
-                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                startActivity(intent);
+                if (mPromotion.getPlace().getUrlTwitter().length() != 0) {
+                    Uri uri = Uri.parse(mPromotion.getPlace().getUrlTwitter()); // missing 'http://' will cause crashed
+                    Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                    startActivity(intent);
+                } else {
+                    Toast toast = Toast.makeText(MyApplication.getAppContext(), "No hay Twitter registrado",  Toast.LENGTH_SHORT);
+                    toast.show();
+                }
+
             }
         });
 
         imgInstagram.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Uri uri = Uri.parse("http://www.instagram.com"); // missing 'http://' will cause crashed
-                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                startActivity(intent);
+                if (mPromotion.getPlace().getUrlInstagram().length() != 0) {
+                    Uri uri = Uri.parse(mPromotion.getPlace().getUrlInstagram()); // missing 'http://' will cause crashed
+                    Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                    startActivity(intent);
+                } else {
+                    Toast toast = Toast.makeText(MyApplication.getAppContext(), "No hay Instagram registrado",  Toast.LENGTH_SHORT);
+                    toast.show();
+                }
+
             }
         });
 
         imgPinterest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Uri uri = Uri.parse("http://www.pinterest.com"); // missing 'http://' will cause crashed
-                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                startActivity(intent);
+                if (mPromotion.getPlace().getUrlPinterest().length() != 0) {
+                    Uri uri = Uri.parse(mPromotion.getPlace().getUrlPinterest()); // missing 'http://' will cause crashed
+                    Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                    startActivity(intent);
+                } else {
+                    Toast toast = Toast.makeText(MyApplication.getAppContext(), "No hay Pinterest registrado",  Toast.LENGTH_SHORT);
+                    toast.show();
+                }
+
             }
         });
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.

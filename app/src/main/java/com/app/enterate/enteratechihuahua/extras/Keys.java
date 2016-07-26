@@ -12,6 +12,8 @@ public interface Keys {
         public static final String KEY_URL_FACEBOOK = "urlFacebook";
         public static final String KEY_URL_IMAGE_LOGO = "urlImageLogo";
         public static final String KEY_URL_TWITTER = "urlTwitter";
+        public static final String KEY_URL_PINTEREST = "urlPinterest";
+        public static final String KEY_URL_INSTAGRAM = "urlInstagram";
         public static final String KEY_URL_LOCATION = "urlLocation";
         public static final String KEY_PROMOTIONS = "promotions";
         public static final String KEY_PLACE = "place";
