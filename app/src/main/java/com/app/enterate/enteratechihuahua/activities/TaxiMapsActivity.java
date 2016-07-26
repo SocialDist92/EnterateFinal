@@ -1,7 +1,15 @@
 package com.app.enterate.enteratechihuahua.activities;
 
+import android.Manifest;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Criteria;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
+import android.location.LocationProvider;
 import android.net.Uri;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
@@ -16,6 +24,8 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.CameraPosition;
+import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
@@ -24,11 +34,14 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import java.util.ArrayList;
 
 public class TaxiMapsActivity extends FragmentActivity implements OnMapReadyCallback, GoogleMap.OnMarkerClickListener,
-        TaxiSitesLoadedListener {
+        TaxiSitesLoadedListener, LocationListener {
 
     private GoogleMap mMap;
     private Marker marker;
     private ArrayList<TaxiSite> taxiSites  = new ArrayList<>();
+    private LocationManager mLocationManager = null;
+    private String provider = null;
+    private Marker mCurrentPosition = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +77,11 @@ public class TaxiMapsActivity extends FragmentActivity implements OnMapReadyCall
         LatLng taxi3 = new LatLng(28.6393783,-106.0731112);
         LatLng taxi4 = new LatLng(28.6373318,-106.0775002);
         LatLng chihuahua = new LatLng(28.6148879, -106.015528);
+
+
+        if (isProviderAvailable() && (provider != null)) {
+            locateCurrentPosition();
+        }
 
 
         // map is a GoogleMap object
@@ -106,11 +124,11 @@ public class TaxiMapsActivity extends FragmentActivity implements OnMapReadyCall
 
         //mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
         //mMap.moveCamera(CameraUpdateFactory.newLatLng(chihuahua));
-        mMap.addMarker(new MarkerOptions()
+        /*mMap.addMarker(new MarkerOptions()
 
                 .position(new LatLng(28.639884, -106.0720454))
                 .title("Hello world")
-                .icon(BitmapDescriptorFactory.fromResource(R.drawable.person)));
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.person)));*/
 
         mMap.setOnMarkerClickListener(this);
         //mMap.moveCamera(CameraUpdateFactory.newLatLng(chihuahua));
@@ -151,10 +169,118 @@ public class TaxiMapsActivity extends FragmentActivity implements OnMapReadyCall
         return false;
     }
 
+    private void locateCurrentPosition() {
+
+        int status = getPackageManager().checkPermission(Manifest.permission.ACCESS_COARSE_LOCATION,
+                getPackageName());
+
+        if (status == PackageManager.PERMISSION_GRANTED) {
+            Location location = mLocationManager.getLastKnownLocation(provider);
+            updateWithNewLocation(location);
+            //  mLocationManager.addGpsStatusListener(this);
+            long minTime = 5000;// ms
+            float minDist = 5.0f;// meter
+            mLocationManager.requestLocationUpdates(provider, minTime, minDist,
+                    this);
+        }
+    }
+
+    private boolean isProviderAvailable() {
+        mLocationManager = (LocationManager) getSystemService(
+                Context.LOCATION_SERVICE);
+        Criteria criteria = new Criteria();
+        criteria.setAccuracy(Criteria.ACCURACY_COARSE);
+        criteria.setAltitudeRequired(false);
+        criteria.setBearingRequired(false);
+        criteria.setCostAllowed(true);
+        criteria.setPowerRequirement(Criteria.POWER_LOW);
+
+        provider = mLocationManager.getBestProvider(criteria, true);
+        if (mLocationManager
+                .isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {
+            provider = LocationManager.NETWORK_PROVIDER;
+
+            return true;
+        }
+
+        if (mLocationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+            provider = LocationManager.GPS_PROVIDER;
+            return true;
+        }
+
+        if (provider != null) {
+            return true;
+        }
+        return false;
+    }
+
+    private void updateWithNewLocation(Location location) {
+
+        if (location != null && provider != null) {
+            double lng = location.getLongitude();
+            double lat = location.getLatitude();
+
+            addBoundaryToCurrentPosition(lat, lng);
+
+            CameraPosition camPosition = new CameraPosition.Builder()
+                    .target(new LatLng(lat, lng)).zoom(10f).build();
+
+            if (mMap != null)
+                mMap.animateCamera(CameraUpdateFactory
+                        .newCameraPosition(camPosition));
+        } else {
+            //Log.d("Location error", "Something went wrong");
+        }
+    }
+
+    private void addBoundaryToCurrentPosition(double lat, double lang) {
+
+        MarkerOptions mMarkerOptions = new MarkerOptions();
+        mMarkerOptions.position(new LatLng(lat, lang));
+        mMarkerOptions.icon(BitmapDescriptorFactory
+                .fromResource(R.drawable.marker_current));
+        mMarkerOptions.anchor(0.5f, 0.5f);
+
+        CircleOptions mOptions = new CircleOptions()
+                .center(new LatLng(lat, lang)).radius(10000)
+                .strokeColor(0x110000FF).strokeWidth(1).fillColor(0x110000FF);
+        mMap.addCircle(mOptions);
+        if (mCurrentPosition != null)
+            mCurrentPosition.remove();
+        mCurrentPosition = mMap.addMarker(mMarkerOptions);
+    }
+
     @Override
     public void onTaxiSitesLoaded(ArrayList<TaxiSite> listTaxiSites) {
         L.m("TaxiMapsActivity: onTaxiSiteLoaded");
         taxiSites = listTaxiSites;
         System.out.println("taxis cargados"+taxiSites);
+    }
+
+    @Override
+    public void onLocationChanged(Location location) {
+        updateWithNewLocation(location);
+    }
+
+    @Override
+    public void onStatusChanged(String provider, int status, Bundle extras) {
+        switch (status) {
+            case LocationProvider.OUT_OF_SERVICE:
+                break;
+            case LocationProvider.TEMPORARILY_UNAVAILABLE:
+                break;
+            case LocationProvider.AVAILABLE:
+                break;
+        }
+    }
+
+    @Override
+    public void onProviderEnabled(String provider) {
+
+    }
+
+    @Override
+    public void onProviderDisabled(String provider) {
+        updateWithNewLocation(null);
     }
 }
