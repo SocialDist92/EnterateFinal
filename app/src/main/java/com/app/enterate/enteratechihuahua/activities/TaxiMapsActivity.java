@@ -1,11 +1,19 @@
 package com.app.enterate.enteratechihuahua.activities;
 
+import android.Manifest;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Criteria;
+import android.location.Location;
+import android.location.LocationManager;
+import android.location.LocationProvider;
 import android.net.Uri;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
+import android.util.Log;
 
 import com.app.enterate.enteratechihuahua.callbacks.TaxiSitesLoadedListener;
 import com.app.enterate.enteratechihuahua.logging.L;
@@ -16,14 +24,17 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.CameraPosition;
+import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-
+import android.location.LocationListener;
 import java.util.ArrayList;
 
-public class TaxiMapsActivity extends FragmentActivity implements OnMapReadyCallback, GoogleMap.OnMarkerClickListener,
+public class TaxiMapsActivity extends FragmentActivity implements OnMapReadyCallback,
+        GoogleMap.OnMarkerClickListener,
         TaxiSitesLoadedListener {
 
     private GoogleMap mMap;
@@ -57,6 +68,8 @@ public class TaxiMapsActivity extends FragmentActivity implements OnMapReadyCall
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+
+
 
         LatLng sydney = new LatLng(28.6407642, -106.0726933);
         LatLng taxi = new LatLng(28.638502,-106.0734079);
@@ -106,11 +119,11 @@ public class TaxiMapsActivity extends FragmentActivity implements OnMapReadyCall
 
         //mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
         //mMap.moveCamera(CameraUpdateFactory.newLatLng(chihuahua));
-        mMap.addMarker(new MarkerOptions()
+        /*mMap.addMarker(new MarkerOptions()
 
                 .position(new LatLng(28.639884, -106.0720454))
                 .title("Hello world")
-                .icon(BitmapDescriptorFactory.fromResource(R.drawable.person)));
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.person)));*/
 
         mMap.setOnMarkerClickListener(this);
         //mMap.moveCamera(CameraUpdateFactory.newLatLng(chihuahua));
@@ -157,4 +170,7 @@ public class TaxiMapsActivity extends FragmentActivity implements OnMapReadyCall
         taxiSites = listTaxiSites;
         System.out.println("taxis cargados"+taxiSites);
     }
+
+
+
 }
