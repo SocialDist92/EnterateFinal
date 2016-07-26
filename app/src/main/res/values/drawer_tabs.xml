@@ -1,8 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="drawer_tabs">
+        <item>Comida</item>
+        <item>Bares</item>
+        <item>Antros</item>
+        <item>Cafés</item>
+        <item>Plazas Comerciales</item>
         <item>Eventos</item>
-        <item>Restaurantes</item>
+        <item>Belleza</item>
+        <item>Mascotas</item>
+        <item>Gimnasios</item>
         <item>Gubernamentales</item>
+        <item>Escuelas</item>
     </string-array>
 </resources>

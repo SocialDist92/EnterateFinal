@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@android:color/white"
-    tools:context="com.app.jonatan.enteratechihuahua.fragments.FragmentNavigationDrawer">
+    tools:context="com.app.enterate.enteratechihuahua.fragments.FragmentNavigationDrawer">
     <FrameLayout
         android:id="@+id/frame"
         android:layout_width="match_parent"
@@ -72,6 +72,16 @@
                 android:layout_marginRight="12dp"
                 android:gravity="right"
                 style="@style/TextAppearance.AppCompat.Small" />
+            <Button
+                android:id="@+id/logoutBtn"
+                android:layout_below="@+id/line"
+                android:layout_width="50dp"
+                android:text="LogOut"
+                android:textSize="10dp"
+                android:textColor="#ffff"
+                android:visibility="visible"
+                android:layout_height="18dp"
+                android:background="@color/colorPrimary" />
         </RelativeLayout>
 
     </FrameLayout>
@@ -85,16 +95,6 @@
             android:layout_height="wrap_content"
             />
 
-        <Button
-            android:id="@+id/logoutBtn"
-            android:layout_width="80dp"
-            android:text="LogOut"
-            android:textColor="#ffff"
-            android:visibility="visible"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="18dp"
-            android:layout_marginTop="200dp"
-            android:background="@color/colorPrimary" />
     </RelativeLayout>
 
 </RelativeLayout>
