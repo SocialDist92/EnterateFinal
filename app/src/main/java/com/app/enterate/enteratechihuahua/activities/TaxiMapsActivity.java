@@ -150,7 +150,7 @@ public class TaxiMapsActivity extends FragmentActivity implements OnMapReadyCall
                     Toast.LENGTH_LONG).show();*/
 
             AlertDialog alertDialog = new AlertDialog.Builder(this).create();
-            alertDialog.setTitle("Llamar a " + marker.getTitle() + ":");
+            alertDialog.setTitle("Llamar a " + marker.getTitle() + " tiempo aproximado " + (int)(Math.random()*30 + 1) + " minutos:");
             alertDialog.setMessage("Telefono: "+marker.getSnippet().toString());
             alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "Llamar",
                     new DialogInterface.OnClickListener() {
@@ -242,7 +242,7 @@ public class TaxiMapsActivity extends FragmentActivity implements OnMapReadyCall
         mMarkerOptions.anchor(0.5f, 0.5f);
 
         CircleOptions mOptions = new CircleOptions()
-                .center(new LatLng(lat, lang)).radius(10000)
+                .center(new LatLng(lat, lang)).radius(1000)
                 .strokeColor(0x110000FF).strokeWidth(1).fillColor(0x110000FF);
         mMap.addCircle(mOptions);
         if (mCurrentPosition != null)
