@@ -238,7 +238,7 @@ public class TaxiMapsActivity extends FragmentActivity implements OnMapReadyCall
         MarkerOptions mMarkerOptions = new MarkerOptions();
         mMarkerOptions.position(new LatLng(lat, lang));
         mMarkerOptions.icon(BitmapDescriptorFactory
-                .fromResource(R.drawable.dotmap));
+                .fromResource(R.drawable.person));
         mMarkerOptions.anchor(0.5f, 0.5f);
 
         CircleOptions mOptions = new CircleOptions()
