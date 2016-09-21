@@ -273,6 +273,9 @@ public class ActivityMain extends ActionBarActivity implements MaterialTabListen
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            Intent i = new Intent(this, PreferencesActivity.class);
+            startActivity(i);
+
             return true;
         }
 
