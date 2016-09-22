@@ -235,7 +235,7 @@ public class TaxiMapsActivity extends FragmentActivity implements OnMapReadyCall
 
     private void addBoundaryToCurrentPosition(double lat, double lang) {
 
-        MarkerOptions mMarkerOptions = new MarkerOptions();
+        MarkerOptions mMarkerOptions = new MarkerOptions().title("").snippet("");
         mMarkerOptions.position(new LatLng(lat, lang));
         mMarkerOptions.icon(BitmapDescriptorFactory
                 .fromResource(R.drawable.person));

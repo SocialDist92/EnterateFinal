@@ -39,6 +39,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
+        android:theme="@style/AppTheme">
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
@@ -108,6 +109,10 @@
                 android:resource="@xml/searchable" />
 
         </activity>
+            android:label="@string/title_activity_taxi_maps" />
+        <activity android:name="com.app.enterate.enteratechihuahua.activities.PreferencesActivity"></activity>
+        <activity android:name="com.app.enterate.enteratechihuahua.activities.PrivacyActivity"></activity>
+        <activity android:name="com.app.enterate.enteratechihuahua.activities.TermsActivity"></activity>
     </application>
 
 </manifest>

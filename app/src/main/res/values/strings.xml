@@ -1,13 +1,13 @@
 <resources>
     <string name="app_name">Entérate Chihuahua</string>
 
-    <string name="facebook_app_id">168883090186012</string>
+    <string name="facebook_app_id">1751490005107641</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_main">Movivz</string>
     <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
+    <string name="action_settings">Configuración</string>
     <string name="title_activity_sub">SubActivity</string>
     <string name="next">TouchProcessingActivity</string>
     <string name="drawer_open">Open</string>
@@ -50,4 +50,54 @@
     <string name="title_activity_login">LoginActivity</string>
     <string name="title_activity_taxi_maps">Taxis</string>
     <string name="searchable">Buscar...</string>
+
+    <string name="privacy">Aviso de privacidad\nEntérate Chihuahua como responsable del tratamiento de sus datos personales con domicilio en Paramaribo 7905, Chihuahua, de conformidad con lo dispuesto en los artículos 8, 15, 16, 17 33 y 36 de la Ley Federal de Protección de Datos Personales en Posesión de los Particulares en los artículos 3, Fracciones II y VII, y 33, así como la denominación del capítulo II, del Título Segundo, de la Ley Federal de Transparencia y Acceso a la Información Pública Gubernamental, le informamos los términos y condiciones del aviso de privacidad simplificado de datos personales, Los datos personales que recopilamos los destinamos únicamente con el siguiente propósito \nI.) Proveer  la información de los productos y servicios que se promocionan. \nII.) Notificarle sobre nuevos productos o servicios. \nIII.) Comunicarle sobre los cambios en los productos y servicios. \nIV.) Elaborar estudios y programas que son necesarios para determinar hábitos de consumo. \nV.)Realizar evaluaciones periódicas de los productos y servicios \nVI.) Evaluar la calidad del servicio que brindamos \nVII.)Creación de información logística \nVIII) Realizar estudios internos sobre hábitos de consumo.  Le informamos que utilizamos cookies y web beacons para obtener información personal de usted, como la siguiente:
+\n-Su tipo de navegador y sistema operativo.
+\n-Las páginas de Internet que visita.
+\n-Los vínculos que sigue.
+\n-La dirección IP. 
+\nSus datos personales pueden ser transferidos y tratados dentro y fuera del país, por personas distintas a Entérate Chihuahua. En ese sentido, su información puede ser compartida con los clientes promocionados en la aplicación, para que ellos puedan contar con la información sobre sus  hábitos de consumo o preferencias. Si usted no manifiesta su oposición para que sus datos personales sean transferidos por medio del correo electrónico enteratechihuahua@hotmail.com. , se entenderá que ha otorgado su consentimiento para ello.
+Usted podrá contactarnos en cualquier momento a través de nuestro correo electrónico enteratechihuahua@hotmail.com. En todo momento usted podrá revocar el consentimiento que nos ha otorgado para el tratamiento de sus datos personales, a fin de que dejemos de hacer uso de los mismos. Para ello, es necesario que presente su petición al correo electrónico antes mencionado. Su petición deberá ir acompañada de la siguiente información: escrito libre firmado donde se manifiesta que desea que no hagamos uso de sus datos personales, el documento debe contener su correo electrónico de Facebook por medio del cual accede a nuestra aplicación,  copia de su credencial de elector.
+ Si tiene cualquier pregunta respecto al tratamiento de sus datos personales o requiere de mayor información puede consultar nuestro aviso de privacidad completo en el siguiente link: Aviso de Privacidad. Cualquier cambio que hagamos a nuestro Aviso de Privacidad en el futuro estará disponible en nuestro portal de internet www.enteratechihuahua.com.mx </string>
+
+    <string name="terms">Términos y Condiciones de Uso de la aplicación móvil entérate chihuahua\n
+
+\nLos siguientes términos y condiciones (los "Términos y Condiciones") rigen el uso que se le dé a la aplicación móvil entérate chihuahua (la “aplicación móvil”) y a cualquiera de los contenidos disponibles por o a través de esta aplicación móvil, incluyendo cualquier contenido derivado del mismo. Al usar la aplicación móvil, usted acepta estos términos y condiciones en lo que se refiere a su uso.
+\n1) Definiciones
+\nEn estos Términos y Condiciones, se hace referencia a la aplicación móvil como  o “nosotros" o “nos”. Lea estos Términos y Condiciones de uso (“Términos”) detenidamente antes de usar nuestra aplicación. Al usarla, usted acepta estos Términos y la Política de Privacidad, y acepta respetarlos. Si no está de acuerdo con estos Términos, no debe usar nuestra aplicación.
+\n(2) Datos personales
+\nUsted acepta que al usar nuestra aplicación, nosotros podemos recopilar datos personales de usted. Puede encontrar una descripción de cómo utilizaremos sus datos personales en nuestra Política de Privacidad.
+\n(3) Sus obligaciones
+\nAl usar nuestra aplicación, según los Términos y Condiciones usted:
+\nDebe usar nuestra aplicación sólo para fines lícitos y de una manera que no viole los derechos de terceros ni restrinja ni inhiba el uso de nuestra aplicación por parte de terceros;
+\nNo debe participar de ninguna conducta que sea ilícita, o que pueda acosar o causar consternación o incomodidad a cualquier persona;
+\nNo debe cargar, publicar, transmitir ni distribuir ningún material o información (i) cuando usted no sea titular de los derechos de propiedad intelectual o no tenga derecho a usar dichos derechos sobre ese material o (ii) que sea ilícito o que pueda ser perjudicial, amenazante, abusivo, calumnioso, difamatorio, pornográfico o de otro modo obsceno, objetable desde el punto de vista racial, étnico o de otro tipo, o que dañe la reputación de entérate chihuahua;
+\nNo debe interferir, dañar ni afectar ninguna parte de nuestro sitio web, ningún equipo, sistema o red utilizados para operar nuestra aplicación;
+\nNo debe transmitir ningún dato ni enviar ni cargar ningún material que contenga virus, troyanos, gusanos, bombas de tiempo, registradores de pulsaciones de teclas, spyware, adware o cualquier otro programa perjudicial o código de computación similar diseñado para afectar negativamente el funcionamiento de cualquier computadora o hardware;
+\nDebe usar software de comprobación de virus; y
+\nNo debe reproducir, duplicar, copiar ni revender ninguna parte de nuestro sitio nuestra aplicación.
+\n(4) Exclusión de garantías
+\nEntérate Chihuahua  no ofrece garantías, manifestaciones ni compromisos respecto de ningún contenido de nuestra aplicación (incluidos, a modo de ejemplo, respecto a las promociones u ofertas publicadas de los  anunciado en la aplocación), ni de ningún contenido de cualquier otro sitio web al que se remita o al que se acceda por enlace de hipertexto a través de este sitio web.
+\nEntérate Chihuahua no acepta responsabilidad alguna por ninguna pérdida que pudiera surgir por basarse en información o materiales publicados en la aplicación. Si desea obtener más detalles sobre la información en los materiales publicados, comuníquese directamente con el lugar, establecimiento promocionado.
+\nDeterminadas partes de la aplicación tienen enlaces a sitios web de internet externos, y otros sitios web de internet externos pueden contener enlaces a este sitio web. Entérate Chihuahua no es responsable del contenido de ningún sitio web de internet externo.
+\nLos enlaces a otros sitios web se proporcionan sólo con fines informativos. No tenemos control sobre el contenido de los sitios web a los que se incluyen enlaces, y no aceptamos responsabilidad alguna por el material que se encuentra en estos ni por pérdidas o daños que puedan surgir del uso de estos.
+\n(5) Derechos de autor
+\nEl derecho de autor sobre el contenido de toda la información de la aplicación es propiedad de quien se encuentra debidamente acreditado como titular. La reproducción de parte o la totalidad del contenido de cualquier forma se encuentra prohibida salvo de conformidad con los siguientes permisos. Todos nuestros derechos están reservados. Le permitimos que lleve a cabo las siguientes acciones:
+\nLos nombres y logotipos que identifican a nuestro sitio web y a Solarcentury son propiedad de nosotros.
+\n(6) Cambios en nuestra aplicación
+\nPodemos actualizar nuestra aplicación periódicamente, y podemos cambiar el contenido en cualquier momento. Sin embargo, tenga en cuenta que cualquier contenido de nuestra aplicación puede estar desactualizado en cualquier momento, y no tenemos la obligación de actualizarlo.
+\nNo garantizamos que nuestra aplicación ni ningún contenido de este esté libre de errores u omisiones.
+\n(7) Acceso a nuestra aplicación
+\nNuestra aplicación está disponible sin cargo.
+\nNo garantizamos que nuestra aplicación ni ningún contenido del mismo esté siempre disponible o no sea interrumpido. El acceso a nuestra aplicación se permite en forma temporal. Podemos suspender, retirar, discontinuar o cambiar la totalidad o cualquier parte de nuestra aplicación sin aviso. No asumiremos responsabilidad frente a usted por ningún motivo por el que nuestra aplicación no esté disponible en cualquier momento o por cualquier período.
+        \n(8) Enlaces a nuestro sitio web
+\nUsted puede incluir un enlace a la  liga de descarga de la aplicación, siempre que lo haga de manera justa y legal y que no dañe nuestra reputación ni se aproveche de ella.
+\nUsted no debe establecer un enlace de modo que sugiera cualquier forma de asociación, aprobación o aval de nuestra parte cuando no exista.
+\nNuestra aplicación no debe enmarcarse en ninguna otra aplicación.
+\nNos reservamos el derecho de retirar el permiso de enlace sin aviso.
+\nSi desea hacer uso de cualquier contenido de nuestro sitio web de un modo distinto del establecido anteriormente, comuníquese con nosotros.
+\n(9) Derecho aplicable
+\nEstos Términos, su objeto y su formación (y cualquier disputa o reclamación) se rigen por el derecho mexicano.
+\n(10) Cambios en los términos
+\nPodemos revisar estos Términos modificando esta página. Verifique esta página periódicamente para consultar cualquier cambio que hayamos hecho, dado que es vinculante para usted.</string>
 </resources>

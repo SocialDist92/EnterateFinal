@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <Preference android:title="Aviso de privacidad"
+        android:key="privacy">
+    </Preference>
+    <Preference android:title="Términos y condiciones"
+        android:key="terms">
+    </Preference>
+    <CheckBoxPreference android:title="Notificaciones"
+        android:defaultValue="false"
+        android:summary="Esta opción activa o desactiva las notificaciones."
+        android:key="applicationNotification"
+        />
+    <Preference android:title="Desarrolladores"
+        android:summary="Desarrollado por OmniCode 2016"
+        android:icon="@mipmap/ic_overcode"
+        />
+</PreferenceScreen>
