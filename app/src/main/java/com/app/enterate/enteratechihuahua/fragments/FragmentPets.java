@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.app.enterate.enteratechihuahua.adapters.AdapterPromotion;
 import com.app.enterate.enteratechihuahua.adapters.AdapterSubcategory;
@@ -68,6 +69,7 @@ public class FragmentPets extends Fragment implements SortListener, PromotionsLo
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         View layout = inflater.inflate(R.layout.fragment_pets, container, false);
         mTextError = (TextView) layout.findViewById(R.id.textVolleyError);
 
@@ -178,6 +180,9 @@ public class FragmentPets extends Fragment implements SortListener, PromotionsLo
         mListPromotions = promotionsEventos;
         mAdapter.setPromotions(promotionsEventos);
         adapter.setPromotions(mListPromotions);
+
+        if(mListPromotions.isEmpty())
+            Toast.makeText(getActivity(), "Deslice hacia abajo para cargar las promociones", Toast.LENGTH_SHORT).show();
 
     }
 

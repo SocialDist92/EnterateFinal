@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.app.enterate.enteratechihuahua.adapters.AdapterPromotion;
 import com.app.enterate.enteratechihuahua.adapters.AdapterSubcategory;
@@ -67,6 +68,7 @@ public class FragmentSchools extends Fragment implements PromotionsLoadedListene
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         // Inflate the layout for this fragment
         View layout = inflater.inflate(R.layout.fragment_schools, container, false);
         mTextError = (TextView) layout.findViewById(R.id.textVolleyError);
@@ -164,6 +166,9 @@ public class FragmentSchools extends Fragment implements PromotionsLoadedListene
         mListPromotions = promotionsGovernment;
         mAdapter.setPromotions(promotionsGovernment);
         adapter.setPromotions(mListPromotions);
+
+        if(mListPromotions.isEmpty())
+            Toast.makeText(getActivity(), "Deslice hacia abajo para cargar las promociones", Toast.LENGTH_SHORT).show();
     }
 
     @Override

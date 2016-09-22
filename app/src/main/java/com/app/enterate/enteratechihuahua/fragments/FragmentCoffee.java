@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.NetworkError;
@@ -74,6 +75,7 @@ public class FragmentCoffee extends Fragment implements PromotionsLoadedListener
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         // Inflate the layout for this fragment
         View layout = inflater.inflate(R.layout.fragment_coffee, container, false);
         mTextError = (TextView) layout.findViewById(R.id.textVolleyError);

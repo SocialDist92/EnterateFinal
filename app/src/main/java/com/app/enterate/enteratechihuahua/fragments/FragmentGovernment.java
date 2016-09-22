@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.support.v7.widget.SearchView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.app.enterate.enteratechihuahua.adapters.AdapterPromotion;
 import com.app.enterate.enteratechihuahua.adapters.AdapterSubcategory;
@@ -70,6 +71,7 @@ public class FragmentGovernment extends Fragment implements PromotionsLoadedList
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         // Inflate the layout for this fragment
         View layout = inflater.inflate(R.layout.fragment_government, container, false);
         mTextError = (TextView) layout.findViewById(R.id.textVolleyError);
@@ -168,6 +170,7 @@ public class FragmentGovernment extends Fragment implements PromotionsLoadedList
         mListPromotions = promotionsGovernment;
         mAdapter.setPromotions(promotionsGovernment);
         adapter.setPromotions(mListPromotions);
+
     }
 
     @Override

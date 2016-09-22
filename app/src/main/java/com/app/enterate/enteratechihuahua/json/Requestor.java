@@ -1,5 +1,6 @@
 package com.app.enterate.enteratechihuahua.json;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonObjectRequest;
@@ -23,6 +24,8 @@ public class Requestor {
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET,
                 url,
                 (String)null, requestFuture, requestFuture);
+
+        //request.setRetryPolicy(new DefaultRetryPolicy(20 * 1000, 3, 1.0f));
 
         requestQueue.add(request);
         try {

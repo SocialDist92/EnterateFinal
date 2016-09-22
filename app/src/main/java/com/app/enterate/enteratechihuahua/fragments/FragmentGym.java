@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.app.enterate.enteratechihuahua.adapters.AdapterPromotion;
 import com.app.enterate.enteratechihuahua.adapters.AdapterSubcategory;
@@ -68,6 +69,7 @@ public class FragmentGym extends Fragment implements SortListener, PromotionsLoa
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         View layout = inflater.inflate(R.layout.fragment_gym, container, false);
         mTextError = (TextView) layout.findViewById(R.id.textVolleyError);
 
@@ -109,6 +111,7 @@ public class FragmentGym extends Fragment implements SortListener, PromotionsLoa
 
             }
         }
+
 
         mAdapter.setPromotions(mListPromotions);
         adapter.setPromotions(mListPromotions);
@@ -170,7 +173,7 @@ public class FragmentGym extends Fragment implements SortListener, PromotionsLoa
         ArrayList<Promotion> promotionsEventos = new ArrayList<>();
         for (Promotion promotion : listPromotions) {
             final String text = promotion.getPlace().getCategory();
-            if (text.contains("Eventos")) {
+            if (text.contains("Gimnasios")) {
                 promotionsEventos.add(promotion);
             }
         }

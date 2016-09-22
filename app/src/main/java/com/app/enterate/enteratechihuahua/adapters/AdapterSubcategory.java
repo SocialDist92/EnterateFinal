@@ -60,6 +60,16 @@ public class AdapterSubcategory extends
                 System.out.println("presiono cardview");
                 System.out.println("promotions ---"+ promotions );
                 System.out.println("=>" + sub.get(pos).getSubName());
+
+                if(sub.get(pos).getSubName().contains("Médico")  )
+                    sub.get(pos).setSubName("Servicio Medico");
+
+                if(sub.get(pos).getSubName().contains("Uñas")  )
+                    sub.get(pos).setSubName("Unias");
+
+                if(sub.get(pos).getSubName().contains("Rápida")  )
+                    sub.get(pos).setSubName("Rapida");
+
                 ArrayList<Promotion> promotionsSub = new ArrayList<>();
                 for(Promotion promotion: promotions) {
                     final String text = promotion.getPlace().getSubCategory();

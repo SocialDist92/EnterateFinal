@@ -62,7 +62,7 @@ public class AdapterPromotion extends RecyclerView.Adapter<AdapterPromotion.View
         mPreviousPosition  = position;
 
         String urlLogo = currentPromotion.getPlace().getUrlImageLogo();
-        loadImages(urlLogo, holder);
+        loadImages(urlLogo, holder, position);
 
         holder.promotionView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,7 +81,7 @@ public class AdapterPromotion extends RecyclerView.Adapter<AdapterPromotion.View
         return mListPromotions.size();
     }
 
-    private void loadImages(String urlThumbnail, final ViewHolderPromotion holder) {
+    private void loadImages(String urlThumbnail, final ViewHolderPromotion holder, final int pos) {
         if (!urlThumbnail.equals(Constants.NA)) {
             mImageLoader.get(urlThumbnail, new ImageLoader.ImageListener() {
                 @Override
@@ -93,7 +93,7 @@ public class AdapterPromotion extends RecyclerView.Adapter<AdapterPromotion.View
                 public void onErrorResponse(VolleyError error) {
 
                 }
-            });
+            }, 100, 100);
         }
     }
 

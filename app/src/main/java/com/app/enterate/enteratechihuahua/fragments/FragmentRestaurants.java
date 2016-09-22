@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.support.v7.widget.SearchView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.NetworkError;
@@ -68,6 +69,7 @@ public class FragmentRestaurants extends Fragment implements PromotionsLoadedLis
     public static FragmentRestaurants newInstance(String param1, String param2) {
         FragmentRestaurants fragment = new FragmentRestaurants();
         Bundle args = new Bundle();
+
 
         fragment.setArguments(args);
         return fragment;
@@ -134,9 +136,12 @@ public class FragmentRestaurants extends Fragment implements PromotionsLoadedLis
             }
         }
 
+
         mAdapter.setPromotions(mListPromotions);
         adapter.setPromotions(mListPromotions);
         adapter.setAdapterPromotions(mAdapter);
+
+
 
         return layout;
     }
@@ -163,9 +168,21 @@ public class FragmentRestaurants extends Fragment implements PromotionsLoadedLis
                 promotionsRestaurants.add(promotion);
             }
         }
+
         mListPromotions = promotionsRestaurants;
-        mAdapter.setPromotions(promotionsRestaurants);
+
+        /*ArrayList<Promotion>  promotionsFirst = new ArrayList<>();
+        for(Promotion promotion: mListPromotions) {
+            final String text = promotion.getPlace().getSubCategory();
+
+            if (text.contains("Tacos")) {
+                promotionsFirst.add(promotion);
+            }
+        }*/
+
+        mAdapter.setPromotions(mListPromotions);
         adapter.setPromotions(mListPromotions);
+
     }
 
     @Override
