@@ -25,11 +25,12 @@ public class Requestor {
                 url,
                 (String)null, requestFuture, requestFuture);
 
-        //request.setRetryPolicy(new DefaultRetryPolicy(20 * 1000, 3, 1.0f));
+        request.setRetryPolicy(new DefaultRetryPolicy(20 * 1000, 3, 1.0f));
 
         requestQueue.add(request);
         try {
-            response = requestFuture.get(40000, TimeUnit.MILLISECONDS);
+            response = requestFuture.get(30000, TimeUnit.MILLISECONDS);
+
         } catch (InterruptedException e) {
             L.m(e + "");
         } catch (ExecutionException e) {

@@ -75,6 +75,8 @@ public class FragmentRestaurants extends Fragment implements PromotionsLoadedLis
         return fragment;
     }
 
+    public void hola(){};
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

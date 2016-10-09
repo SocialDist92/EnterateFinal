@@ -373,6 +373,7 @@ public class ActivityMain extends ActionBarActivity implements MaterialTabListen
             switch (num) {
                 case TAB_COMIDA:
                     fragment = FragmentRestaurants.newInstance("", "");
+
                     break;
                 case TAB_BARES:
                     fragment = FragmentBars.newInstance("", "");

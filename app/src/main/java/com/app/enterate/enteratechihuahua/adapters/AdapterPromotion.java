@@ -93,7 +93,7 @@ public class AdapterPromotion extends RecyclerView.Adapter<AdapterPromotion.View
                 public void onErrorResponse(VolleyError error) {
 
                 }
-            }, 100, 100);
+            }, 50, 50);
         }
     }
 
