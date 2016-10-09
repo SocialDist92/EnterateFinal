@@ -27,6 +27,7 @@ public class PreferencesActivity extends PreferenceActivity {
     {
         Intent i;
         Intent t;
+        Intent s;
 
         @Override
         public void onCreate(final Bundle savedInstanceState)
@@ -38,6 +39,7 @@ public class PreferencesActivity extends PreferenceActivity {
 
             Preference privacy = (Preference) findPreference("privacy");
             Preference terms = (Preference) findPreference("terms");
+            Preference suggestions = (Preference) findPreference("suggestions");
 
             i = new Intent(getActivity(), PrivacyActivity.class);
             privacy.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
@@ -57,6 +59,24 @@ public class PreferencesActivity extends PreferenceActivity {
                     return false;
                 }
             });
+
+            //Suggestions mail preference
+
+            s = new Intent(Intent.ACTION_SEND);
+            s.setType("plain/text");
+            s.putExtra(Intent.EXTRA_EMAIL, new String[] { "enteratechihuahua@gmail.com" });
+            s.putExtra(Intent.EXTRA_SUBJECT, "Sugerencias EntérateChihuahua");
+
+            suggestions.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                @Override
+                public boolean onPreferenceClick(Preference preference) {
+                    startActivity(Intent.createChooser(s, ""));
+                    return false;
+                }
+            });
+
+
+
         }
     }
 }

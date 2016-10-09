@@ -12,7 +12,11 @@
         android:key="applicationNotification"
         />
     <Preference android:title="Desarrolladores"
-        android:summary="Desarrollado por OmniCode 2016"
+        android:summary="Desarrollado por Nektar 2016"
         android:icon="@mipmap/ic_overcode"
         />
+    <Preference android:title="Sugerencias"
+        android:key="suggestions"
+        android:summary="Envianos tus sugerencias">
+    </Preference>
 </PreferenceScreen>

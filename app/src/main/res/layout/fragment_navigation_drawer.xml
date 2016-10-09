@@ -42,7 +42,7 @@
                 android:layout_marginLeft="12dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="entérate "
+                android:text="entérate Chihuahua"
                 android:textSize="20dp"
                 android:textColor="@android:color/white"
                 />
@@ -54,7 +54,7 @@
                 android:textSize="20dp"
                 android:layout_toRightOf="@id/enterate"
                 android:textColor="@android:color/white"
-                android:text="Usuario" />
+                />
 
             <View
                 android:id="@+id/line"
@@ -66,7 +66,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="enterate@gmail.com"
+                android:text="@string/mail"
                 android:textColor="@android:color/white"
                 android:layout_below="@+id/line"
                 android:layout_marginRight="12dp"
@@ -80,7 +80,7 @@
                 android:textSize="10dp"
                 android:textColor="#ffff"
                 android:visibility="visible"
-                android:layout_height="18dp"
+                android:layout_height="0dp"
                 android:background="@color/colorPrimary" />
         </RelativeLayout>
 

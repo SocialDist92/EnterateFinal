@@ -48,6 +48,7 @@
     <string name="action_shared_transitions">SharedElementsTransition</string>
     <string name="title_activity_promotion_detail">Map</string>
     <string name="title_activity_login">LoginActivity</string>
+    <string name="mail">enteratechihuahua@gmail.com</string>
     <string name="title_activity_taxi_maps">Taxis</string>
     <string name="searchable">Buscar...</string>
 

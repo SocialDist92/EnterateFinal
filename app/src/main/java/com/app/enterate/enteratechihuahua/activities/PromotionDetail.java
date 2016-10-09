@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.text.method.ScrollingMovementMethod;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
@@ -67,6 +68,8 @@ public class PromotionDetail extends AppCompatActivity implements OnMapReadyCall
 
         place.setText(mPromotion.getPlace().getName());
         description.setText(mPromotion.getDescription());
+
+        description.setMovementMethod(new ScrollingMovementMethod());
 
         loadImages(mPromotion.getPlace().getUrlImageLogo());
 

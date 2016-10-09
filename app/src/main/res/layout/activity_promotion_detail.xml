@@ -22,7 +22,7 @@
             android:id="@+id/place"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="30dp"
+            android:textSize="20dp"
             android:paddingLeft="10dp"
             android:textColor="#ffff"
             android:text="Starbucks"
@@ -33,12 +33,15 @@
             android:id="@+id/description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="20dp"
+            android:paddingTop="10dp"
+            android:textSize="13dp"
             android:paddingLeft="10dp"
             android:textColor="#ffff"
             android:text="Starbucks"
             android:layout_toRightOf="@+id/placeImg"
-            android:layout_below="@+id/place" />
+            android:layout_below="@+id/place"
+            android:maxLines="10"
+            android:scrollbars = "vertical"/>
 
     </RelativeLayout>
 
@@ -53,38 +56,41 @@
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         tools:context="com.app.enterate.enteratechihuahua.activities.PromotionDetail" />
 
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true">
+        <ImageView
+            android:id="@+id/facebook"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/facebook"/>
+        <ImageView
+            android:id="@+id/twitter"
+            android:layout_toRightOf="@+id/facebook"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/twitter"
+            />
+        <ImageView
+            android:id="@+id/instagram"
+            android:layout_width="50dp"
+            android:layout_toRightOf="@+id/twitter"
+            android:layout_height="50dp"
+            android:src="@drawable/instagram"
+            />
+        <ImageView
+            android:id="@+id/pinterest"
+            android:layout_width="50dp"
+            android:layout_toRightOf="@+id/instagram"
+            android:layout_height="50dp"
+            android:src="@drawable/pinterest"
+            />
+
+    </RelativeLayout>
 
 
-          <ImageView
-              android:id="@+id/facebook"
-              android:layout_alignParentBottom="true"
-              android:layout_width="50dp"
-              android:layout_height="50dp"
-              android:src="@drawable/facebook"/>
-          <ImageView
-              android:id="@+id/twitter"
-              android:layout_alignParentBottom="true"
-              android:layout_width="50dp"
-              android:layout_toRightOf="@+id/facebook"
-              android:layout_height="50dp"
-              android:src="@drawable/twitter"
-              />
-          <ImageView
-              android:id="@+id/instagram"
-              android:layout_alignParentBottom="true"
-              android:layout_width="50dp"
-              android:layout_toRightOf="@+id/twitter"
-              android:layout_height="50dp"
-              android:src="@drawable/instagram"
-              />
-          <ImageView
-              android:id="@+id/pinterest"
-              android:layout_alignParentBottom="true"
-              android:layout_width="50dp"
-              android:layout_toRightOf="@+id/instagram"
-              android:layout_height="50dp"
-              android:src="@drawable/pinterest"
-              />
 
 
     </RelativeLayout>
