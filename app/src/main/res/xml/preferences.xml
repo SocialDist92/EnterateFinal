@@ -15,6 +15,10 @@
         android:summary="Desarrollado por Nektar 2016"
         android:icon="@mipmap/ic_overcode"
         />
+    <Preference android:title="Recomienda esta App"
+        android:key="share"
+        android:summary="Presiona para compartir">
+    </Preference>
     <Preference android:title="Sugerencias"
         android:key="suggestions"
         android:summary="Envianos tus sugerencias">

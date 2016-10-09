@@ -28,6 +28,7 @@ public class PreferencesActivity extends PreferenceActivity {
         Intent i;
         Intent t;
         Intent s;
+        Intent sh;
 
         @Override
         public void onCreate(final Bundle savedInstanceState)
@@ -40,6 +41,7 @@ public class PreferencesActivity extends PreferenceActivity {
             Preference privacy = (Preference) findPreference("privacy");
             Preference terms = (Preference) findPreference("terms");
             Preference suggestions = (Preference) findPreference("suggestions");
+            Preference share = (Preference) findPreference("share");
 
             i = new Intent(getActivity(), PrivacyActivity.class);
             privacy.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
@@ -75,8 +77,23 @@ public class PreferencesActivity extends PreferenceActivity {
                 }
             });
 
+            //Share preference
 
+            sh = new Intent(Intent.ACTION_SEND);
+            sh.setType("text/plain");
+            sh.putExtra(Intent.EXTRA_SUBJECT, "My application name");
+            String sAux =
+                    "https://play.google.com/store/apps/details?id=" +
+                            "com.app.enterate.enteratechihuahua";
+            sh.putExtra(Intent.EXTRA_TEXT, sAux);
 
+            share.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                @Override
+                public boolean onPreferenceClick(Preference preference) {
+                    startActivity(Intent.createChooser(sh, ""));
+                    return false;
+                }
+            });
         }
     }
 }
