@@ -28,6 +28,7 @@ import static com.app.enterate.enteratechihuahua.extras.Keys.EndpointPlacePromot
 import static com.app.enterate.enteratechihuahua.extras.Keys.EndpointPlacePromotion.KEY_URL_INSTAGRAM;
 import static com.app.enterate.enteratechihuahua.extras.Keys.EndpointPlacePromotion.KEY_URL_PINTEREST;
 import static com.app.enterate.enteratechihuahua.extras.Keys.EndpointPlacePromotion.KEY_URL_TWITTER;
+import static com.app.enterate.enteratechihuahua.extras.Keys.EndpointPlacePromotion.KEY_URL_WEBPAGE;
 
 /**
  * Created by Jonatan on 11/05/2016.
@@ -48,6 +49,7 @@ public class Parser {
                     String placeSubCategory = Constants.NA;
                     String placeUrlImageLogo = Constants.NA;
                     String placeUrlFacebook = Constants.NA;
+                    String placeUrlWebPage = Constants.NA;
                     String placeUrlTwitter = Constants.NA;
                     String placeUrlPinterest = Constants.NA;
                     String placeUrlInstagram = Constants.NA;
@@ -100,6 +102,10 @@ public class Parser {
                             placeUrlPinterest = objectPlace.getString(KEY_URL_PINTEREST);
                         }
 
+                        if (Utils.contains(objectPlace, KEY_URL_WEBPAGE)) {
+                            placeUrlWebPage = objectPlace.getString(KEY_URL_WEBPAGE);
+                        }
+
                         if (Utils.contains(objectPlace, KEY_URL_INSTAGRAM)) {
                             placeUrlInstagram = objectPlace.getString(KEY_URL_INSTAGRAM);
                         }
@@ -141,6 +147,7 @@ public class Parser {
                     place.setSubCategory(placeSubCategory);
                     place.setUrlImageLogo(placeUrlImageLogo);
                     place.setUrlFacebook(placeUrlFacebook);
+                    place.setUrlWebPage(placeUrlWebPage);
                     place.setUrlTwitter(placeUrlTwitter);
                     place.setUrlInstagram(placeUrlInstagram);
                     place.setUrlPinterest(placeUrlPinterest);

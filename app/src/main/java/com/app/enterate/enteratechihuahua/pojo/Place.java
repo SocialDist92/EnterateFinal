@@ -16,6 +16,7 @@ public class Place implements Parcelable {
     private String urlFacebook;
     private String urlPinterest;
     private String urlInstagram;
+    private String urlWebPage;
     private String urlImageLogo;
     private String urlLocation;
     private String urlTwitter;
@@ -26,12 +27,13 @@ public class Place implements Parcelable {
     }
 
     public Place(String category, String subCategory, String idAsStr, String name, String urlFacebook,
-                 String urlImageLogo, String urlLocation, String urlTwitter) {
+                 String urlWebPage, String urlImageLogo, String urlLocation, String urlTwitter) {
         this.category = category;
         this.subCategory = subCategory;
         this.idAsStr = idAsStr;
         this.name = name;
         this.urlFacebook = urlFacebook;
+        this.urlWebPage = urlWebPage;
         this.urlImageLogo = urlImageLogo;
         this.urlLocation = urlLocation;
         this.urlTwitter = urlTwitter;
@@ -46,6 +48,7 @@ public class Place implements Parcelable {
         name = in.readString();
         urlFacebook = in.readString();
         urlPinterest = in.readString();
+        urlWebPage = in.readString();
         urlInstagram = in.readString();
         urlImageLogo = in.readString();
         urlLocation = in.readString();
@@ -165,11 +168,20 @@ public class Place implements Parcelable {
         dest.writeString(idAsStr);
         dest.writeString(name);
         dest.writeString(urlFacebook);
+        dest.writeString(urlWebPage);
         dest.writeString(urlPinterest);
         dest.writeString(urlInstagram);
         dest.writeString(urlImageLogo);
         dest.writeString(urlLocation);
         dest.writeString(urlTwitter);
         dest.writeTypedList(ubications);
+    }
+
+    public String getUrlWebPage() {
+        return urlWebPage;
+    }
+
+    public void setUrlWebPage(String urlWebPage) {
+        this.urlWebPage = urlWebPage;
     }
 }
