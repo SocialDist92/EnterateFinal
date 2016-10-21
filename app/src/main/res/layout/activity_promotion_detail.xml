@@ -87,6 +87,13 @@
             android:layout_height="50dp"
             android:src="@drawable/pinterest"
             />
+        <ImageView
+            android:id="@+id/web"
+            android:layout_width="50dp"
+            android:layout_toRightOf="@+id/pinterest"
+            android:layout_height="50dp"
+            android:src="@drawable/web"
+            />
 
     </RelativeLayout>
 

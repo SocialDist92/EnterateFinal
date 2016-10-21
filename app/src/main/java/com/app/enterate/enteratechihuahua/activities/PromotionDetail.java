@@ -59,6 +59,7 @@ public class PromotionDetail extends AppCompatActivity implements OnMapReadyCall
         ImageView imgTwitter = (ImageView) findViewById(R.id.twitter);
         ImageView imgInstagram = (ImageView) findViewById(R.id.instagram);
         ImageView imgPinterest = (ImageView) findViewById(R.id.pinterest);
+        ImageView imgWeb = (ImageView) findViewById(R.id.web);
         TextView place = (TextView) findViewById(R.id.place);
         TextView description = (TextView) findViewById(R.id.description);
         placeLogo = (ImageView) findViewById(R.id.placeImg);
@@ -131,6 +132,21 @@ public class PromotionDetail extends AppCompatActivity implements OnMapReadyCall
                     startActivity(intent);
                 } else {
                     Toast toast = Toast.makeText(MyApplication.getAppContext(), "No hay Pinterest registrado",  Toast.LENGTH_SHORT);
+                    toast.show();
+                }
+
+            }
+        });
+
+        imgWeb.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mPromotion.getPlace().getUrlWebPage().length() != 0) {
+                    Uri uri = Uri.parse(mPromotion.getPlace().getUrlWebPage()); // missing 'http://' will cause crashed
+                    Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                    startActivity(intent);
+                } else {
+                    Toast toast = Toast.makeText(MyApplication.getAppContext(), "No hay página registrada",  Toast.LENGTH_SHORT);
                     toast.show();
                 }
 
